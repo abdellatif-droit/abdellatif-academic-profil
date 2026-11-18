@@ -3,99 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الصفحة الشخصية | عبد الله</title>
+    <title>الصفحة الأكاديمية | عبد اللطيف</title>
+    <!-- خط عربي عصري -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* تنسيقات عامة للصفحة */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.8;
         }
 
-        /* شريط الترحيب العلوي (Header) */
+        /* شريط الترحيب العلوي الأكاديمي */
         header {
-            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #1d4ed8 100%);
             color: white;
             text-align: center;
-            padding: 60px 20px;
+            padding: 60px 20px 80px;
+            border-bottom-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.25);
+            position: relative;
         }
-        header h1 {انا عبد اللطيف
-            font-size: 2.5rem;
+        .academic-badge {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
             margin-bottom: 10px;
         }
         header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 750px;
+            margin: 0 auto;
         }
 
-        /* حاوية المحتوى الرئيسية */
+        /* حاوية المحتوى */
         .container {
-            max-width: 800px;
-            margin: -30px auto 40px;
+            max-width: 850px;
+            margin: -40px auto 40px;
             padding: 0 20px;
         }
 
-        /* تصميم البطاقات (Cards) */
+        /* تصميم البطاقات */
         .card {
-            background: white;
-            border-radius: 10px;
+            background: #ffffff;
+            border-radius: 16px;
             padding: 30px;
             margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
         }
         .card h2 {
             color: #1e3a8a;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 10px;
-            font-size: 1.5rem;
+            margin-bottom: 16px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* قائمة المهارات */
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+        /* قائمة المهارات القانونية */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
             list-style: none;
         }
-        .skills-list li {
-            background-color: #eff6ff;
-            color: #1d4ed8;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: bold;
+        .skills-grid li {
+            background: #f1f5f9;
+            color: #1e293b;
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-weight: 600;
             font-size: 0.95rem;
-            border: 1px solid #bfdbfe;
+            border-right: 4px solid #2563eb;
+            transition: background 0.2s ease;
+        }
+        .skills-grid li:hover {
+            background: #e2e8f0;
         }
 
-        /* قسم التواصل والزر */
+        /* قسم التواصل والأزرار */
         .contact-section {
             text-align: center;
         }
-        .contact-btn {
-            display: inline-block;
-            background-color: #10b981;
-            color: white;
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 26px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
             text-decoration: none;
-            padding: 14px 30px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .btn-email { background-color: #1e3a8a; }
+        .btn-phone { background-color: #059669; }
+
+        /* صندوق إظهار رقم الهاتف المخفي */
+        .phone-box {
+            margin-top: 15px;
             font-size: 1.1rem;
             font-weight: bold;
-            border-radius: 8px;
-            margin-top: 15px;
-            transition: background-color 0.3s ease;
-        }
-        .contact-btn:hover {
-            background-color: #059669;
+            color: #059669;
+            display: none;
         }
 
-        /* تذييل الصفحة (Footer) */
-        footer {انا عبداللطيف
+        footer {
             text-align: center;
             padding: 20px;
             color: #64748b;
@@ -105,46 +149,71 @@
 </head>
 <body>
 
-    <!-- القسم العلوي: الاسم والصفة -->
     <header>
-        <h1>مرحباً، أنا عبد اللطيف رقم هاتفي 0664489725</h1>
-  <p>باحث و طالب بسلك الدكتوراه بجامعة محمد الخامس بالرباط كلية العلوم القانونية  الاقتصادية و الاجتماعية اكدال</p> 
+        <!-- رمز يجمع قبعة التخرج ولباس الباحث والأكاديمية -->
+        <div class="academic-badge">🎓⚖️</div>
+        <h1>مرحباً، أنا عبد اللطيف</h1>
+        <p>باحث وطالب بسلك الدكتوراه بجامعة محمد الخامس بالرباط <br>كلية العلوم القانونية الاقتصادية والاجتماعية أكدال</p>
     </header>
 
     <div class="container">
-        <!-- قسم نبذة عني -->
+        <!-- نبذة عني -->
         <section class="card">
-            <h2>اقدم لكم نفسي </h2>
+            <h2>📜 تقديم شخصي</h2>
             <p>
-                أهلاً بك في صفحتي الشخصية. أعمل على تقديم شروحات في المجال القانوني  
+                أهلاً بك في صفحتي الأكاديمية الرسمية. أعمل على تقديم إسهامات وشروحات متخصصة في المجال القانوني، ومشاركة الرؤى التحليلية المتعلقة بالنصوص التشريعية والمقررات القضائية وفق المنهجية الأكاديمية السليمة.
             </p>
         </section>
 
-        <!-- قسم المهارات -->
+        <!-- المهارات والخدمات القانونية -->
         <section class="card">
-            <h2>مهاراتي </h2>
-            <ul class="skills-list">
-                <li>شرح التصوص القانونية </li>
-                <li>شرح الطريقة الاكاديمية السليمة لانجاز البحوث و العروض  GitHub</li>
-                <li>شرح مناهج الاجابة على الاسئلة  </li>
-                <li>التحليل و التعليق علر التصوص و المقرات القضائية </li>
-                <li>اتجاز البحوث والمقالات و التحرير </li>
+            <h2>⚖️ المهارات والخبرات الأكاديمية</h2>
+            <ul class="skills-grid">
+                <li>شرح النصوص القانونية بدقة</li>
+                <li>شرح الطريقة الأكاديمية لإنجاز البحوث والعروض</li>
+                <li>التحليل والتعليق على النصوص والمقررات القضائية</li>
+                <li>شرح مناهج الإجابة على الأسئلة القانونية</li>
+                <li>إنجاز البحوث والمقالات والتحرير القانوني</li>
             </ul>
         </section>
 
-        <!-- قسم التواصل -->
+        <!-- قسم التواصل (بدون إظهار الرقم مباشرة) -->
         <section class="card contact-section">
-            <h2>تواصل معي</h2>
-            <p>هل لديك فمشكل في فهم القانون أو اريد استفسار؟ يسعدني تواصلك في أي وقت.</p>
-            <!-- استبدل البريد الإلكتروني أدناه ببريدك الحقيقي -->
-            <a href="mailto:abdoallam19903003@email.com" class="contact-btn">أرسل لي رسالة عبر البريد</a>
+            <h2>📞 تواصل معي</h2>
+            <p>هل لديك استفسار قانوني أو رغبة في التعاون الأكاديمي؟ يسعدني تواصلك.</p>
+            
+            <div class="contact-buttons">
+                <!-- زر البريد الإلكتروني -->
+                <a href="mailto:example@email.com" class="btn btn-email">
+                    ✉️ أرسل رسالة بريدية
+                </a>
+
+                <!-- زر لإظهار رقم الهاتف عند الطلب -->
+                <button onclick="revealPhone()" class="btn btn-phone" id="phoneBtn">
+                    📱 اطلب رقم الهاتف
+                </button>
+            </div>
+
+            <!-- الرقم المخفي الذي يظهر فقط عند الضغط -->
+            <div id="phoneDisplay" class="phone-box">
+                📞 0664489725
+            </div>
         </section>
     </div>
 
-    <!-- التذييل -->
     <footer>
-        <p>جميع الحقوق محفوظة © 2026 | تم التصميم والبرمجة بواسطة عبد اللطيف</p>
+        <p>جميع الحقوق محفوظة © 2026 | الباحث عبد اللطيف</p>
     </footer>
+
+    <!-- كود بسيط لإظهار الرقم عند طلب الزبون -->
+    <script>
+        function revealPhone() {
+            var phoneDiv = document.getElementById("phoneDisplay");
+            var btn = document.getElementById("phoneBtn");
+            phoneDiv.style.display = "block";
+            btn.style.display = "none";
+        }
+    </script>
 
 </body>
 </html>
