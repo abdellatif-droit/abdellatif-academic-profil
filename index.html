@@ -97,7 +97,7 @@
             background: #e2e8f0;
         }
 
-        /* قسم المقالات الأكاديمية */
+        /* قسم االمراجع اوالمقالات الأكاديمية */
         .articles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -170,7 +170,7 @@
             color: #ffffff;
         }
 
-        /* النافذة المنبثقة (Modal) لمعاينة وتحميل المقال */
+        /* النافذة المنبثقة (Modal) لمعاينة وتحميل المرجع او المقال */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -388,7 +388,7 @@
     <div id="articleModal" class="modal-overlay" onclick="closeModalOnOutside(event)">
         <div class="modal-box">
             <div class="modal-header">
-                <h3 id="modalTitle">عنوان المقال</h3>
+                <h3 id="modalTitle">عنوان المرجع او المقال</h3>
                 <div class="modal-controls">
                     <a id="modalDownloadLink" href="#" download class="btn-sm btn-download" style="padding: 6px 14px;">
                         ⬇️ تحميل PDF
