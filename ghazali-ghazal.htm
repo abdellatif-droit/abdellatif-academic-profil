@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عالم غالي وغزل</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --cream:#fffaf2;
+  --pink:#f4dce5;
+  --blue:#dceaf3;
+  --gold:#b99156;
+  --dark:#34313b;
+}
+
+*{box-sizing:border-box;scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:'Cairo',sans-serif;
+  background:var(--cream);
+  color:var(--dark);
+}
+
+header{
+  padding:20px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#fffdf9;
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 3px 18px #00000009;
+}
+
+.logo{font-size:23px;font-weight:800;color:var(--gold)}
+
+nav a{
+  text-decoration:none;
+  color:var(--dark);
+  margin:0 10px;
+  font-size:14px;
+}
+
+.hero{
+  min-height:470px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:60px 20px;
+  background:linear-gradient(135deg,#f8e7e9,#e5eff6,#fff6e8);
+}
+
+.hero .stars{font-size:35px;letter-spacing:12px}
+
+.hero h1{
+  font-size:clamp(35px,7vw,65px);
+  margin:15px 0;
+  color:#60536a;
+}
+
+.hero p{font-size:18px;color:#746d79}
+
+.btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 30px;
+  background:#b99156;
+  color:white;
+  text-decoration:none;
+  border-radius:30px;
+}
+
+section{padding:65px 8%;text-align:center}
+
+.section-title{
+  font-size:30px;
+  color:#78627a;
+  margin-bottom:12px;
+}
+
+.subtitle{color:#928995;margin-bottom:35px}
+
+.children{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
+}
+
+.child{
+  padding:28px;
+  border-radius:24px;
+  background:white;
+  box-shadow:0 8px 30px #00000009;
+  transition:.3s;
+}
+
+.child:hover{transform:translateY(-7px)}
+
+.avatar{
+  height:180px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:18px;
+  font-size:85px;
+  margin-bottom:18px;
+}
+
+.ghali{background:linear-gradient(135deg,#dceaf3,#edf4f7)}
+.ghazal{background:linear-gradient(135deg,#f4dce5,#fff0f1)}
+
+.child h3{font-size:25px;margin:10px}
+.child p{color:#817985;line-height:1.9}
+
+.gallery{
+  background:#f9f1eb;
+}
+
+.photos{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:18px;
+}
+
+.photo{
+  min-height:175px;
+  border-radius:20px;
+  background:linear-gradient(145deg,#e7dfe9,#f5e8dc);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  font-size:48px;
+}
+
+.photo span{font-size:14px;margin-top:10px;color:#716777}
+
+.memories{
+  max-width:750px;
+  margin:auto;
+  padding:30px;
+  background:white;
+  border-radius:25px;
+  line-height:2.2;
+  box-shadow:0 5px 25px #00000008;
+}
+
+footer{
+  padding:35px 15px;
+  text-align:center;
+  background:#393441;
+  color:white;
+}
+
+footer span{color:#e7c995}
+
+@media(max-width:600px){
+  header{padding:15px 4%;flex-direction:column;gap:10px}
+  nav a{margin:0 5px;font-size:12px}
+  section{padding:45px 5%}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">✦ GH & GZ ✦</div>
+  <nav>
+    <a href="#home">الرئيسية</a>
+    <a href="#children">عالمنا</a>
+    <a href="#gallery">الصور</a>
+    <a href="#memories">ذكرياتنا</a>
+  </nav>
+</header>
+
+<div class="hero" id="home">
+  <div class="stars">✨ 🌙 ⭐</div>
+  <h1>عالم غالي وغزل</h1>
+  <p>حكاية حب وفرح... وذكريات تكبر كل يوم ❤️</p>
+  <a href="#children" class="btn">اكتشف عالمنا</a>
+</div>
+
+<section id="children">
+  <h2 class="section-title">أبطال حكايتنا</h2>
+  <p class="subtitle">لكل واحد منهما عالمه الجميل وشخصيته المميزة</p>
+
+  <div class="children">
+    <div class="child">
+      <div class="avatar ghali">👦🏻</div>
+      <h3>غالي</h3>
+      <p>أمير صغير، يحمل في ابتسامته فرحة لا توصف، وفي خطواته حكايات المستقبل.</p>
+    </div>
+
+    <div class="child">
+      <div class="avatar ghazal">👧🏻</div>
+      <h3>غزل</h3>
+      <p>زهرة جميلة، تضيف إلى الحياة ألواناً من الحب والحنان والبهجة.</p>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <h2 class="section-title">ألبوم الذكريات</h2>
+  <p class="subtitle">صور ولحظات تبقى محفورة في القلب</p>
+
+  <div class="photos">
+    <div class="photo">📷<span>ذكريات غالي</span></div>
+    <div class="photo">🌸<span>ذكريات غزل</span></div>
+    <div class="photo">💞<span>لحظات عائلية</span></div>
+    <div class="photo">🌟<span>أجمل اللحظات</span></div>
+  </div>
+</section>
+
+<section id="memories">
+  <h2 class="section-title">رسالة من القلب</h2>
+  <div class="memories">
+    <p>
+      إلى غالي وغزل...
+      <br>
+      أنتما أجمل هدية وأغلى ما في الحياة.
+      نتمنى أن تكبر أحلامكما معكما،
+      وأن تظل الابتسامة رفيقة دربكما،
+      وأن تكون أيامكما مليئة بالنجاح والسعادة.
+      <br>
+      هذا الموقع صفحة صغيرة من حكاية حب كبيرة،
+      سنملؤها مع مرور الأيام بصوركما وإنجازاتكما
+      وأجمل ذكرياتكما.
+      <br>
+      <strong>أحبكما دائماً وأبداً ❤️</strong>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>صُنع بكل الحب من أجل <span>غالي وغزل</span> ❤️</p>
+  <small>© 2026 جميع الحقوق محفوظة</small>
+</footer>
+
+</body>
+</html>
