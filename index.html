@@ -294,7 +294,7 @@
     <header>
         <div class="academic-badge">🎓⚖️</div>
         <h1>مرحباً، أنا عبد اللطيف</h1>
-        <p>باحث وطالب بسلك الدكتوراه بجامعة محمد الخامس بالرباط <br>كلية العلوم القانونية الاقتصادية والاجتماعية أكدال</p>
+        <p>طالب باحث بجامعة محمد الخامس بالرباط <br>كلية العلوم القانونية الاقتصادية والاجتماعية أكدال</p>
     </header>
 
     <div class="container">
@@ -318,22 +318,22 @@
             </ul>
         </section>
 
-        <!-- قسم المقالات والإسهامات العلمية -->
+        <!-- قسم المراجع والإسهامات العلمية -->
         <section class="card">
             <h2>📚 المقالات والإسهامات العلمية</h2>
             <p>يمكنك تصفح المقالات والأبحاث القانونية مباشرة عبر النافذة أو تحميلها بصيغة PDF:</p>
             
             <div class="articles-grid">
                 
-                <!-- بطاقة المقال 1 -->
+                <!-- بطاقة المرجع 1 -->
                 <article class="article-item">
                     <div>
                         <span class="article-tag">القانون المدني</span>
-                        <h3>عنوان المقال الأول هنا</h3>
-                        <p>وصف مختصر لموضوع المقال والإشكالية القانونية التي يعالجها.</p>
+                        <h3>عنوان المرجع الأول هنا</h3>
+                        <p>وصف مختصر لموضوع المرجع او المقال والإشكالية القانونية التي يعالجها.</p>
                     </div>
                     <div class="article-actions">
-                        <button onclick="openModal('عنوان المقال الأول هنا', 'articles/article1.pdf')" class="btn-sm btn-preview">
+                        <button onclick="openModal('عنوان المرجع او المقال الأول هنا', 'articles/article1.pdf')" class="btn-sm btn-preview">
                             👁️ قراءة في نافذة
                         </button>
                         <a href="articles/article1.pdf" download class="btn-sm btn-download">
@@ -342,7 +342,7 @@
                     </div>
                 </article>
 
-                <!-- بطاقة المقال 2 -->
+                <!-- بطاقة المرجع او المقال 2 -->
                 <article class="article-item">
                     <div>
                         <span class="article-tag">المسطرة الجنائية</span>
@@ -350,7 +350,7 @@
                         <p>وصف مختصر لموضوع المقال والإشكالية القانونية التي يعالجها.</p>
                     </div>
                     <div class="article-actions">
-                        <button onclick="openModal('عنوان المقال الثاني هنا', 'articles/article2.pdf')" class="btn-sm btn-preview">
+                        <button onclick="openModal('عنوان المرجع او المقال الثاني هنا', 'articles/article2.pdf')" class="btn-sm btn-preview">
                             👁️ قراءة في نافذة
                         </button>
                         <a href="articles/article2.pdf" download class="btn-sm btn-download">
@@ -415,7 +415,7 @@
             btn.style.display = "none";
         }
 
-        // دالة فتح نافذة المقال
+        // دالة فتح نافذة المرجع او المقال
         function openModal(title, pdfPath) {
             document.getElementById("modalTitle").textContent = title;
             document.getElementById("modalIframe").src = pdfPath;
@@ -423,7 +423,7 @@
             document.getElementById("articleModal").style.display = "flex";
         }
 
-        // دالة إغلاق نافذة المقال
+        // دالة إغلاق نافذة المرجع او المقال
         function closeModal() {
             document.getElementById("articleModal").style.display = "none";
             document.getElementById("modalIframe").src = "";
