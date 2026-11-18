@@ -2,33 +2,149 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>مشروعي البرمجي الأول</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الشخصية | عبد الله</title>
     <style>
+        /* تنسيقات عامة للصفحة */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
-            background-color: #f0f4f8;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 50px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
         }
-        h1 {
-            color: #2b6cb0;
-        }
-        button {
-            background-color: #38a169;
+
+        /* شريط الترحيب العلوي (Header) */
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
             color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* حاوية المحتوى الرئيسية */
+        .container {
+            max-width: 800px;
+            margin: -30px auto 40px;
+            padding: 0 20px;
+        }
+
+        /* تصميم البطاقات (Cards) */
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .card h2 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* قائمة المهارات */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+        }
+        .skills-list li {
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            border: 1px solid #bfdbfe;
+        }
+
+        /* قسم التواصل والزر */
+        .contact-section {
+            text-align: center;
+        }
+        .contact-btn {
+            display: inline-block;
+            background-color: #10b981;
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+        .contact-btn:hover {
+            background-color: #059669;
+        }
+
+        /* تذييل الصفحة (Footer) */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-    <h1>أهلاً بك في مشروعي الأول!</h1>
-    <p>لقد قمت ببناء هذه الصفحة بنفسي على منصة GitHub.</p>
-    <button onclick="alert('أحسنت! الكود يعمل بنجاح!')">اضغط هنا للتجربة</button>
+    <!-- القسم العلوي: الاسم والصفة -->
+    <header>
+        <h1>مرحباً، أنا عبد الله</h1>
+        <p>باحث ومهتم بالتقنية وتطوير الويب</p>
+    </header>
+
+    <div class="container">
+        <!-- قسم نبذة عني -->
+        <section class="card">
+            <h2>نبذة عني</h2>
+            <p>
+                أهلاً بك في صفحتي الشخصية. أعمل على تطوير مهاراتي في البرمجة وبناء المواقع الإلكترونية الحديثة. أؤمن بالتعلم المستمر والتطبيق العملي لتحويل الأفكار إلى مشاريع رقمية مفيدة.
+            </p>
+        </section>
+
+        <!-- قسم المهارات -->
+        <section class="card">
+            <h2>مهاراتي</h2>
+            <ul class="skills-list">
+                <li>تصميم صفحات الويب (HTML & CSS)</li>
+                <li>إدارة المشاريع عبر GitHub</li>
+                <li>البحث الأكاديمي والكتابة</li>
+                <li>التحليل وحل المشكلات</li>
+                <li>تطوير المحتوى الرقمي</li>
+            </ul>
+        </section>
+
+        <!-- قسم التواصل -->
+        <section class="card contact-section">
+            <h2>تواصل معي</h2>
+            <p>هل لديك فكرة مشروع أو ترغب في التعاون معي؟ يسعدني تواصلك في أي وقت.</p>
+            <!-- استبدل البريد الإلكتروني أدناه ببريدك الحقيقي -->
+            <a href="mailto:example@email.com" class="contact-btn">أرسل لي رسالة عبر البريد</a>
+        </section>
+    </div>
+
+    <!-- التذييل -->
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 | تم التصميم والبرمجة بواسطة عبد الله</p>
+    </footer>
 
 </body>
 </html>
