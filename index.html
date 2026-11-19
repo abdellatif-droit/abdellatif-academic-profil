@@ -3,55 +3,524 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEGALIS | الباحث Abdo-Ghali</title>
+    <title>LEGALIS-Abdo-Ghali | الصفحة الأكاديمية - الباحث</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.8;
+        }
+
+        /* الواجهة العلوية LEGALIS */
+        .hero-box {
+            background: linear-gradient(155deg, #273244 0%, #1c2842 50%, #162447 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 48px 20px 70px;
+            border-bottom-left-radius: 36px;
+            border-bottom-right-radius: 36px;
+        }
+
+        .brand-logo svg {
+            width: 46px;
+            height: 46px;
+            stroke: #c5a66b;
+            stroke-width: 1.8;
+            fill: none;
+            margin-bottom: 10px;
+        }
+
+        .brand-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: #ffffff;
+        }
+
+        .brand-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            color: #cbd5e1;
+            margin-top: 6px;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            width: 70%;
+            max-width: 550px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.25);
+            margin: 0 auto 20px;
+        }
+
+        .hero-box h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .hero-box p {
+            color: #e2e8f0;
+            font-size: 1rem;
+        }
+
+        .gold-text {
+            color: #c5a66b !important;
+            font-weight: 700;
+            margin-top: 6px;
+        }
+
+        /* المحتوى */
+        .container {
+            max-width: 920px;
+            margin: -30px auto 40px;
+            padding: 0 18px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 22px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h2 {
+            color: #162447;
+            font-size: 1.35rem;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .card p {
+            margin-bottom: 12px;
+            color: #334155;
+            text-align: justify;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+            list-style: none;
+        }
+
+        .skills-grid li {
+            background: #f8fafc;
+            padding: 13px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            border-right: 4px solid #1e3a8a;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            border-left: 1px solid #e2e8f0;
+        }
+
+        /* شريط البحث ونموذج إنزال الملفات */
+        .search-box {
+            margin: 16px 0 18px;
+        }
+
+        .search-box label {
+            display: block;
+            font-weight: 700;
+            color: #162447;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.95rem;
+            background: #f8fafc;
+        }
+
+        .upload-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            align-items: end;
+            background: #f8fafc;
+            border: 1px dashed #94a3b8;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 22px;
+        }
+
+        .field label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            padding: 9px 11px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            background: #ffffff;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .library-section {
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 1px solid #e2e8f0;
+            scroll-margin-top: 20px;
+        }
+
+        .library-section h3 {
+            color: #162447;
+            font-size: 1.12rem;
+            margin-bottom: 12px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .article-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        .article-item h4 {
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            color: #0f172a;
+        }
+
+        .article-item p {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 0;
+            text-align: right;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .btn-sm {
+            flex: 1;
+            min-width: 90px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .btn-preview {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        .btn-download {
+            background: #1e3a8a;
+            color: #ffffff;
+        }
+
+        .btn-delete {
+            background: #fee2e2;
+            color: #991b1b;
+            flex: 0 0 auto;
+        }
+
+        .btn-add {
+            background: #162447;
+            color: #ffffff;
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.92rem;
+        }
+
+        .empty-msg {
+            display: none;
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 0.9rem;
+            text-align: center !important;
+        }
+
+        .contact-box {
+            text-align: center;
+        }
+
+        .contact-box p {
+            text-align: center;
+        }
+
+        .btns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.98rem;
+        }
+
+        .btn-mail {
+            background: #162447;
+        }
+
+        .btn-tel {
+            background: #059669;
+        }
+
+        .phone-show {
+            display: none;
+            margin-top: 14px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #047857;
+            direction: ltr;
+        }
+
+        /* نافذة PDF */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 15px;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            width: 100%;
+            max-width: 900px;
+            height: 85vh;
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-top {
+            background: #f1f5f9;
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+        .close-btn {
+            background: #dc2626;
+            color: #ffffff;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .modal iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
-    <main>
-        <section class="card">
-            <h2>📚 المراجع والمقالات والإسهامات العلمية</h2>
-            <p>يمكنك تصفح المقالات والأبحاث القانونية مباشرة عبر النافذة أو تحميلها بصيغة PDF:</p>
 
-            <!-- خانة إنزال الملفات وتحميلها مباشرة من الصفحة -->
-            <div class="upload-box" style="padding: 16px; border: 1px dashed #6b7280; border-radius: 8px; margin-bottom: 20px;">
-                <label for="fileUpload" style="display: block; font-weight: bold; margin-bottom: 8px;">
-                    📤 إنزال ملف جديد لمعاينته أو تحميله (PDF / وثائق):
-                </label>
-                <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-                    <input type="file" id="fileUpload" accept=".pdf,.doc,.docx,.txt" onchange="handleFileUpload(event)">
-                    <button type="button" id="previewUploadedBtn" onclick="previewUploadedFile()" class="btn-sm btn-preview" style="display: none;">
-                        👁️ قراءة الملف المنزل
-                    </button>
-                    <a id="downloadUploadedLink" href="#" download class="btn-sm btn-download" style="display: none;">
-                        ⬇️ تحميل الملف المنزل
-                    </a>
-                </div>
-                <p id="uploadedFileName" style="margin: 8px 0 0; font-size: 0.9em; color: #374151;"></p>
+    <header class="hero-box">
+        <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v18" />
+                <path d="M8 21h8" />
+                <path d="M6 7h12" />
+                <path d="M6 7l-3 7h6l-3-7z" />
+                <path d="M18 7l-3 7h6l-3-7z" />
+                <path d="M3 14a3 3 0 0 0 6 0" />
+                <path d="M15 14a3 3 0 0 0 6 0" />
+            </svg>
+        </div>
+        <div class="brand-name">LEGALIS-Abdo-Ghali</div>
+        <div class="brand-sub">CENTRE D'ÉTUDES ET D'EXPERTISE JURIDIQUE</div>
+        <div class="divider"></div>
+        <h1>مرحباً، معكم مستشاركم القانوني Abdo-Ghali</h1>
+        <p>الاستشارات والدراسات القانونية • البحث العلمي • التحرير الأكاديمي</p>
+        <p class="gold-text">| صفحة القانون ببساطة — للمعرفة القانونية والبحث العلمي</p>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2>📜 تقديم شخصي</h2>
+            <p>
+                طالب باحث في العلوم القانونية (تخصص القانون الخاص)، أتوفر على تجربة مهنية تمتد لأكثر من 15 سنة، راكمت خلالها خبرة واسعة في الاستشارة القانونية.
+            </p>
+            <p>
+                تقديم استشارات قانونية وتقديم مساعدة في مجال البحث العلمي مع إمكانية مواكبة الطلبة منذ السنة الأولى بالجامعة إلى غاية حصولهم على شهادة الماستر في القانون الخاص،
+                وأقدم مجموعة من الخدمات المتخصصة التي تجمع بين الخبرة المهنية والمنهجية الأكاديمية.
+            </p>
+            <p>
+                أهلاً بك في صفحتي الأكاديمية الرسمية، حيث أعمل على تقديم إسهامات وشروحات متخصصة في المجال القانوني،
+                ومشاركة الرؤى التحليلية المتعلقة بالنصوص التشريعية والمقررات القضائية وفق المنهجية الأكاديمية السليمة.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>⚖️ المهارات والخبرات الأكاديمية</h2>
+            <ul class="skills-grid">
+                <li>شرح النصوص القانونية بدقة</li>
+                <li>شرح الطريقة الأكاديمية لإنجاز البحوث والعروض</li>
+                <li>التحليل والتعليق على النصوص والمقررات القضائية</li>
+                <li>شرح مناهج الإجابة على الأسئلة القانونية</li>
+                <li>إنجاز البحوث والمقالات والتحرير القانوني مع توفير المراجع الإلكترونية والورقية</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>📚 المكتبة القانونية — المراجع والمقالات والإسهامات العلمية</h2>
+            <p>ابحث في المراجع أو أنزل ملفًا وحدد مجاله ليُحوَّل مباشرة إلى القسم المناسب في قائمة القراءة والتحميل:</p>
+
+            <!-- مكان البحث -->
+            <div class="search-box">
+                <label for="librarySearch">🔍 بحث سريع في المكتبة:</label>
+                <input type="search" id="librarySearch" oninput="filterLibrary()" placeholder="ابحث بعنوان المرجع، اسم الملف، أو موضوعه...">
             </div>
 
-            <div class="articles-grid">
-                <article class="article-item">
-                    <div>
-                        <span class="tag">القانون العقاري - الأسري - المدني</span>
-                        <h3>عنوان المرجع الأول</h3>
-                        <p>وصف مختصر لموضوع المرجع أو المقال والإشكالية القانونية التي يعالجها.</p>
-                    </div>
-                    <div class="actions">
-                        <button type="button" onclick="openPdf('عنوان المرجع الأول', 'articles/article1.pdf')" class="btn-sm btn-preview">👁️ قراءة في نافذة</button>
-                        <a href="articles/article1.pdf" download class="btn-sm btn-download">⬇️ تحميل PDF</a>
-                    </div>
-                </article>
+            <!-- مكان تنزيل الملفات والتحويل المباشر حسب التخصص -->
+            <form class="upload-form" onsubmit="addFileToLibrary(event)">
+                <div class="field">
+                    <label for="docFile">📤 تنزيل ملف (PDF / وثيقة)</label>
+                    <input type="file" id="docFile" accept=".pdf,.doc,.docx,.txt" required>
+                </div>
 
-                <article class="article-item">
-                    <div>
-                        <span class="tag">القانون الجنائي</span>
-                        <h3>عنوان المرجع الثاني</h3>
-                        <p>وصف مختصر لموضوع المقال والإشكالية القانونية التي يعالجها.</p>
-                    </div>
-                    <div class="actions">
-                        <button type="button" onclick="openPdf('عنوان المرجع الثاني', 'articles/article2.pdf')" class="btn-sm btn-preview">👁️ قراءة في نافذة</button>
-                        <a href="articles/article2.pdf" download class="btn-sm btn-download">⬇️ تحميل PDF</a>
-                    </div>
-                </article>
+                <div class="field">
+                    <label for="docTitle">📝 عنوان المرجع أو المقال</label>
+                    <input type="text" id="docTitle" placeholder="مثال: أحكام العقود التجارية">
+                </div>
+
+                <div class="field">
+                    <label for="docCategory">⚖️ التخصص القانوني</label>
+                    <select id="docCategory" required>
+                        <option value="civil_family_commercial">الأسري والمدني والتجاري</option>
+                        <option value="criminal">الشق الجنائي</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <button type="submit" class="btn-add">➕ إضافة وتحويل للقسم</button>
+                </div>
+            </form>
+
+            <!-- خانة 1: المجال الأسري والمدني والتجاري -->
+            <div id="sectionCivilFamilyCommercial" class="library-section">
+                <h3>🏛️ قائمة القراءة والتحميل — المجال الأسري والمدني والتجاري</h3>
+                <div id="civilFamilyCommercialGrid" class="articles-grid">
+                    <article class="article-item">
+                        <div>
+                            <span class="tag">القانون العقاري - الأسري - المدني - التجاري</span>
+                            <h4>عنوان المرجع الأول</h4>
+                            <p>وصف مختصر لموضوع المرجع أو المقال والإشكالية القانونية التي يعالجها.</p>
+                        </div>
+                        <div class="actions">
+                            <button type="button" onclick="openPdf('عنوان المرجع الأول', 'articles/article1.pdf')" class="btn-sm btn-preview">👁️ قراءة في نافذة</button>
+                            <a href="articles/article1.pdf" download class="btn-sm btn-download">⬇️ تحميل PDF</a>
+                        </div>
+                    </article>
+                </div>
+                <p id="civilEmptySearch" class="empty-msg">لا توجد نتائج مطابقة في المجال الأسري والمدني والتجاري.</p>
+            </div>
+
+            <!-- خانة 2: الشق الجنائي -->
+            <div id="sectionCriminal" class="library-section">
+                <h3>⚖️ قائمة القراءة والتحميل — الشق الجنائي</h3>
+                <div id="criminalGrid" class="articles-grid">
+                    <article class="article-item">
+                        <div>
+                            <span class="tag">القانون الجنائي</span>
+                            <h4>عنوان المرجع الثاني</h4>
+                            <p>وصف مختصر لموضوع المقال والإشكالية القانونية التي يعالجها.</p>
+                        </div>
+                        <div class="actions">
+                            <button type="button" onclick="openPdf('عنوان المرجع الثاني', 'articles/article2.pdf')" class="btn-sm btn-preview">👁️ قراءة في نافذة</button>
+                            <a href="articles/article2.pdf" download class="btn-sm btn-download">⬇️ تحميل PDF</a>
+                        </div>
+                    </article>
+                </div>
+                <p id="criminalEmptySearch" class="empty-msg">لا توجد نتائج مطابقة في الشق الجنائي.</p>
             </div>
         </section>
 
@@ -62,11 +531,12 @@
                 <a href="mailto:example@email.com" class="btn btn-mail">✉️ أرسل رسالة بريدية</a>
                 <button type="button" onclick="showPhone()" id="telBtn" class="btn btn-tel">📱 اطلب رقم الهاتف</button>
             </div>
-            <div id="telBox" class="phone-show" style="display: none;">📞 0664489725</div>
+            <div id="telBox" class="phone-show">📞 0664489725</div>
         </section>
     </main>
 
-    <div id="pdfModal" class="modal" onclick="closeOutside(event)" style="display: none;">
+    <!-- نافذة PDF -->
+    <div id="pdfModal" class="modal" onclick="closeOutside(event)">
         <div class="modal-content">
             <div class="modal-top">
                 <h3 id="pdfTitle">معاينة الملف</h3>
@@ -75,7 +545,7 @@
                     <button type="button" onclick="closePdf()" class="close-btn" aria-label="إغلاق النافذة">✕</button>
                 </div>
             </div>
-            <iframe id="pdfFrame" src="" title="معاينة ملف PDF"></iframe>
+            <iframe id="pdfFrame" src="" title="معاينة الملف"></iframe>
         </div>
     </div>
 
@@ -84,34 +554,131 @@
     </footer>
 
     <script>
-        let uploadedFileUrl = "";
-        let uploadedFileTitle = "";
+        const libraryItems = {
+            civil_family_commercial: [],
+            criminal: []
+        };
 
-        function handleFileUpload(event) {
-            const file = event.target.files[0];
+        function addFileToLibrary(event) {
+            event.preventDefault();
+
+            const fileInput = document.getElementById("docFile");
+            const titleInput = document.getElementById("docTitle");
+            const categorySelect = document.getElementById("docCategory");
+
+            const file = fileInput.files[0];
             if (!file) return;
 
-            if (uploadedFileUrl) {
-                URL.revokeObjectURL(uploadedFileUrl);
+            const category = categorySelect.value;
+            const title = titleInput.value.trim() || file.name.replace(/\.[^/.]+$/, "");
+            const fileUrl = URL.createObjectURL(file);
+
+            const item = {
+                id: Date.now() + "_" + Math.random().toString(36).slice(2, 7),
+                title,
+                fileName: file.name,
+                fileUrl,
+                category
+            };
+
+            libraryItems[category].unshift(item);
+            renderCategory(category);
+            filterLibrary();
+
+            fileInput.value = "";
+            titleInput.value = "";
+
+            // التحويل المباشر إلى القسم المخصص بعد التأكد من تصنيفه
+            const targetSectionId = category === "criminal" ? "sectionCriminal" : "sectionCivilFamilyCommercial";
+            const targetSection = document.getElementById(targetSectionId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
             }
-
-            uploadedFileUrl = URL.createObjectURL(file);
-            uploadedFileTitle = file.name;
-
-            document.getElementById("uploadedFileName").textContent = "الملف المحدد: " + file.name;
-
-            const previewBtn = document.getElementById("previewUploadedBtn");
-            const downloadLink = document.getElementById("downloadUploadedLink");
-
-            previewBtn.style.display = "inline-block";
-            downloadLink.href = uploadedFileUrl;
-            downloadLink.download = file.name;
-            downloadLink.style.display = "inline-block";
         }
 
-        function previewUploadedFile() {
-            if (!uploadedFileUrl) return;
-            openPdf(uploadedFileTitle, uploadedFileUrl);
+        function renderCategory(category) {
+            const isCriminal = category === "criminal";
+            const grid = document.getElementById(isCriminal ? "criminalGrid" : "civilFamilyCommercialGrid");
+            const tagLabel = isCriminal ? "القانون الجنائي" : "الأسري - المدني - التجاري";
+
+            grid.querySelectorAll(".dynamic-item").forEach(el => el.remove());
+
+            libraryItems[category].forEach(item => {
+                const article = document.createElement("article");
+                article.className = "article-item dynamic-item";
+
+                const tagSpan = document.createElement("span");
+                tagSpan.className = "tag";
+                tagSpan.textContent = tagLabel;
+
+                const h4 = document.createElement("h4");
+                h4.textContent = item.title;
+
+                const p = document.createElement("p");
+                p.textContent = "ملف مضاف للقراءة والتحميل: " + item.fileName;
+
+                const topDiv = document.createElement("div");
+                topDiv.append(tagSpan, h4, p);
+
+                const actionsDiv = document.createElement("div");
+                actionsDiv.className = "actions";
+
+                const previewBtn = document.createElement("button");
+                previewBtn.type = "button";
+                previewBtn.className = "btn-sm btn-preview";
+                previewBtn.textContent = "👁️ قراءة في نافذة";
+                previewBtn.addEventListener("click", () => openPdf(item.title, item.fileUrl));
+
+                const downloadLink = document.createElement("a");
+                downloadLink.href = item.fileUrl;
+                downloadLink.download = item.fileName;
+                downloadLink.className = "btn-sm btn-download";
+                downloadLink.textContent = "⬇️ تحميل";
+
+                const deleteBtn = document.createElement("button");
+                deleteBtn.type = "button";
+                deleteBtn.className = "btn-sm btn-delete";
+                deleteBtn.textContent = "🗑️";
+                deleteBtn.title = "حذف الملف";
+                deleteBtn.addEventListener("click", () => removeItem(category, item.id));
+
+                actionsDiv.append(previewBtn, downloadLink, deleteBtn);
+                article.append(topDiv, actionsDiv);
+
+                grid.prepend(article);
+            });
+        }
+
+        function removeItem(category, id) {
+            const index = libraryItems[category].findIndex(item => item.id === id);
+            if (index === -1) return;
+
+            URL.revokeObjectURL(libraryItems[category][index].fileUrl);
+            libraryItems[category].splice(index, 1);
+            renderCategory(category);
+            filterLibrary();
+        }
+
+        function filterLibrary() {
+            const query = document.getElementById("librarySearch").value.trim().toLowerCase();
+            filterGrid("civilFamilyCommercialGrid", "civilEmptySearch", query);
+            filterGrid("criminalGrid", "criminalEmptySearch", query);
+        }
+
+        function filterGrid(gridId, emptyMsgId, query) {
+            const grid = document.getElementById(gridId);
+            const emptyMsg = document.getElementById(emptyMsgId);
+            const items = grid.querySelectorAll(".article-item");
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const matches = !query || text.includes(query);
+                item.style.display = matches ? "" : "none";
+                if (matches) visibleCount++;
+            });
+
+            emptyMsg.style.display = visibleCount === 0 ? "block" : "none";
         }
 
         function showPhone() {
