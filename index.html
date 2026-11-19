@@ -349,15 +349,41 @@
             </ul>
         </section>
 
+ <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGALIS | الباحث Abdo-Ghali</title>
+</head>
+<body>
+    <main>
         <section class="card">
-            <h2>📚المراجع و المقالات والإسهامات العلمية</h2>
+            <h2>📚 المراجع والمقالات والإسهامات العلمية</h2>
             <p>يمكنك تصفح المقالات والأبحاث القانونية مباشرة عبر النافذة أو تحميلها بصيغة PDF:</p>
+
+            <!-- خانة إنزال الملفات وتحميلها مباشرة من الصفحة -->
+            <div class="upload-box" style="padding: 16px; border: 1px dashed #6b7280; border-radius: 8px; margin-bottom: 20px;">
+                <label for="fileUpload" style="display: block; font-weight: bold; margin-bottom: 8px;">
+                    📤 إنزال ملف جديد لمعاينته أو تحميله (PDF / وثائق):
+                </label>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                    <input type="file" id="fileUpload" accept=".pdf,.doc,.docx,.txt" onchange="handleFileUpload(event)">
+                    <button type="button" id="previewUploadedBtn" onclick="previewUploadedFile()" class="btn-sm btn-preview" style="display: none;">
+                        👁️ قراءة الملف المنزل
+                    </button>
+                    <a id="downloadUploadedLink" href="#" download class="btn-sm btn-download" style="display: none;">
+                        ⬇️ تحميل الملف المنزل
+                    </a>
+                </div>
+                <p id="uploadedFileName" style="margin: 8px 0 0; font-size: 0.9em; color: #374151;"></p>
+            </div>
 
             <div class="articles-grid">
                 <article class="article-item">
                     <div>
-                        <span class="tag">القانون العقاري-الأسري-المدني</span>
-                        <h3>عنوان المرجع أو المقال من هنا</h3>
+                        <span class="tag">القانون العقاري - الأسري - المدني</span>
+                        <h3>عنوان المرجع الأول</h3>
                         <p>وصف مختصر لموضوع المرجع أو المقال والإشكالية القانونية التي يعالجها.</p>
                     </div>
                     <div class="actions">
@@ -366,23 +392,14 @@
                     </div>
                 </article>
 
-                <article class="article-item"> 
-                    <div style="padding: 16px; border: 1px solid #d1d5db; border-radius: 8px; margin: 16px 0;">
-                    <p style="font-weight: bold; margin-top: 0;">الوثيقة / الملف</p>
-                    <a href="files/article1.pdf" target="_blank" rel="noopener noreferrer" style="padding: 8px 14px; background: #1d4ed8; color: #fff; text-decoration: none; border-radius: 6px; margin-left: 8px;">
-    قراءة الملف
-  </a>
-  <a href="files/article1.pdf" download style="padding: 8px 14px; background: #15803d; color: #fff; text-decoration: none; border-radius: 6px;">
-    تحميل الملف
-  </a>
-</div>
+                <article class="article-item">
                     <div>
                         <span class="tag">القانون الجنائي</span>
-                        <h3>عنوان المرجع المقال من هنا</h3>
+                        <h3>عنوان المرجع الثاني</h3>
                         <p>وصف مختصر لموضوع المقال والإشكالية القانونية التي يعالجها.</p>
                     </div>
                     <div class="actions">
-                        <button type="button" onclick="openPdf('عنوان المرجع أو المقال ', 'articles/article2.pdf')" class="btn-sm btn-preview">👁️ قراءة في نافذة</button>
+                        <button type="button" onclick="openPdf('عنوان المرجع الثاني', 'articles/article2.pdf')" class="btn-sm btn-preview">👁️ قراءة في نافذة</button>
                         <a href="articles/article2.pdf" download class="btn-sm btn-download">⬇️ تحميل PDF</a>
                     </div>
                 </article>
@@ -396,20 +413,20 @@
                 <a href="mailto:example@email.com" class="btn btn-mail">✉️ أرسل رسالة بريدية</a>
                 <button type="button" onclick="showPhone()" id="telBtn" class="btn btn-tel">📱 اطلب رقم الهاتف</button>
             </div>
-            <div id="telBox" class="phone-show">📞 0664489725</div>
+            <div id="telBox" class="phone-show" style="display: none;">📞 0664489725</div>
         </section>
     </main>
 
-    <div id="pdfModal" class="modal" onclick="closeOutside(event)">
+    <div id="pdfModal" class="modal" onclick="closeOutside(event)" style="display: none;">
         <div class="modal-content">
             <div class="modal-top">
                 <h3 id="pdfTitle">معاينة الملف</h3>
-                <div style="display:flex; gap:8px; align-items:center;">
+                <div style="display: flex; gap: 8px; align-items: center;">
                     <a id="pdfDownload" href="#" download class="btn-sm btn-download">⬇️ تحميل PDF</a>
-                    <button type="button" onclick="closePdf()" class="close-btn">✕</button>
+                    <button type="button" onclick="closePdf()" class="close-btn" aria-label="إغلاق النافذة">✕</button>
                 </div>
             </div>
-            <iframe id="pdfFrame" src=""></iframe>
+            <iframe id="pdfFrame" src="" title="معاينة ملف PDF"></iframe>
         </div>
     </div>
 
@@ -418,6 +435,36 @@
     </footer>
 
     <script>
+        let uploadedFileUrl = "";
+        let uploadedFileTitle = "";
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (uploadedFileUrl) {
+                URL.revokeObjectURL(uploadedFileUrl);
+            }
+
+            uploadedFileUrl = URL.createObjectURL(file);
+            uploadedFileTitle = file.name;
+
+            document.getElementById("uploadedFileName").textContent = "الملف المحدد: " + file.name;
+
+            const previewBtn = document.getElementById("previewUploadedBtn");
+            const downloadLink = document.getElementById("downloadUploadedLink");
+
+            previewBtn.style.display = "inline-block";
+            downloadLink.href = uploadedFileUrl;
+            downloadLink.download = file.name;
+            downloadLink.style.display = "inline-block";
+        }
+
+        function previewUploadedFile() {
+            if (!uploadedFileUrl) return;
+            openPdf(uploadedFileTitle, uploadedFileUrl);
+        }
+
         function showPhone() {
             document.getElementById("telBox").style.display = "block";
             document.getElementById("telBtn").style.display = "none";
@@ -438,6 +485,12 @@
         function closeOutside(e) {
             if (e.target.id === "pdfModal") closePdf();
         }
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") {
+                closePdf();
+            }
+        });
     </script>
 </body>
 </html>
