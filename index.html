@@ -4,25 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LEGALIS | الصفحة الأكاديمية - الباحث عبد اللطيف</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-dark: #0f172a;
-            --primary-navy: #162447;
-            --primary-blue: #1e3a8a;
-            --accent-gold: #c5a66b;
-            --accent-gold-dark: #b89552;
-            --bg-light: #f1f5f9;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --card-bg: #ffffff;
-            --border-color: #e2e8f0;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -31,96 +14,423 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-main);
+            background-color: #f1f5f9;
+            color: #1e293b;
             line-height: 1.8;
         }
 
-        /* الواجهة العلوية وبطاقة الهوية البصرية */
-        .hero-wrapper {
-            background: linear-gradient(155deg, #273244 0%, #1c2842 45%, #162447 100%);
+        /* الواجهة العلوية LEGALIS */
+        .hero-box {
+            background: linear-gradient(155deg, #273244 0%, #1c2842 50%, #162447 100%);
             color: #ffffff;
-            padding: 50px 20px 75px;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.22);
-            position: relative;
-            overflow: hidden;
+            text-align: center;
+            padding: 48px 20px 70px;
+            border-bottom-left-radius: 36px;
+            border-bottom-right-radius: 36px;
+        }
+
+        .brand-logo svg {
+            width: 46px;
+            height: 46px;
+            stroke: #c5a66b;
+            stroke-width: 1.8;
+            fill: none;
+            margin-bottom: 10px;
+        }
+
+        .brand-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: #ffffff;
+        }
+
+        .brand-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            color: #cbd5e1;
+            margin-top: 6px;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            width: 70%;
+            max-width: 550px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.25);
+            margin: 0 auto 20px;
+        }
+
+        .hero-box h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .hero-box p {
+            color: #e2e8f0;
+            font-size: 1rem;
+        }
+
+        .gold-text {
+            color: #c5a66b !important;
+            font-weight: 700;
+            margin-top: 6px;
+        }
+
+        /* المحتوى */
+        .container {
+            max-width: 860px;
+            margin: -30px auto 40px;
+            padding: 0 18px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 22px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .card h2 {
+            color: #162447;
+            font-size: 1.35rem;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .card p {
+            margin-bottom: 12px;
+            color: #334155;
+            text-align: justify;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+            list-style: none;
+        }
+
+        .skills-grid li {
+            background: #f8fafc;
+            padding: 13px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            border-right: 4px solid #1e3a8a;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            border-left: 1px solid #e2e8f0;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+            margin-top: 14px;
+        }
+
+        .article-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+
+        .article-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #0f172a;
+        }
+
+        .article-item p {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 16px;
+            text-align: right;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-sm {
+            flex: 1;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .btn-preview {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        .btn-download {
+            background: #1e3a8a;
+            color: #ffffff;
+        }
+
+        .contact-box {
             text-align: center;
         }
 
-        .hero-wrapper::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.07), transparent 65%);
-            pointer-events: none;
+        .contact-box p {
+            text-align: center;
         }
 
-        .brand-identity {
-            max-width: 780px;
-            margin: 0 auto 30px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .scale-icon {
-            display: inline-flex;
+        .btns {
+            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
-            margin-bottom: 12px;
+            gap: 12px;
+            margin-top: 18px;
         }
 
-        .scale-icon svg {
-            width: 48px;
-            height: 48px;
-            stroke: var(--accent-gold);
-            stroke-width: 1.7;
-            fill: none;
-        }
-
-        .brand-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 32px;
+        .btn {
+            padding: 12px 24px;
+            border-radius: 10px;
             font-weight: 700;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            color: #f8fafc;
-            margin-bottom: 8px;
-        }
-
-        .brand-subtitle-fr {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #cbd5e1;
-            margin-bottom: 22px;
-        }
-
-        .hero-divider {
-            width: 80%;
-            max-width: 600px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(197, 166, 107, 0.5), transparent);
-            margin: 0 auto 24px;
-        }
-
-        .hero-intro h1 {
-            font-size: 2rem;
-            font-weight: 800;
             color: #ffffff;
-            margin-bottom: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.98rem;
         }
 
-        .hero-services {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: #e2e8f0;
-            margin-bottom: 6px;
+        .btn-mail {
+            background: #162447;
         }
 
-        .hero-tagline {
-            font-size: 0.95rem;
-            color: var(--accent-gold);
+        .btn-tel {
+            background: #059669;
+        }
+
+        .phone-show {
+            display: none;
+            margin-top: 14px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #047857;
+            direction: ltr;
+        }
+
+        /* نافذة PDF */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 15px;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            width: 100%;
+            max-width: 900px;
+            height: 85vh;
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-top {
+            background: #f1f5f9;
+            padding: 12px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+        .close-btn {
+            background: #dc2626;
+            color: #ffffff;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .modal iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-box">
+        <div class="brand-logo">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v18" />
+                <path d="M8 21h8" />
+                <path d="M6 7h12" />
+                <path d="M6 7l-3 7h6l-3-7z" />
+                <path d="M18 7l-3 7h6l-3-7z" />
+                <path d="M3 14a3 3 0 0 0 6 0" />
+                <path d="M15 14a3 3 0 0 0 6 0" />
+            </svg>
+        </div>
+        <div class="brand-name">LEGALIS</div>
+        <div class="brand-sub">CENTRE D'ÉTUDES ET D'EXPERTISE JURIDIQUE</div>
+        <div class="divider"></div>
+        <h1>مرحباً، أنا عبد اللطيف، مستشاركم القانوني</h1>
+        <p>الاستشارات والدراسات القانونية • البحث العلمي • التحرير الأكاديمي</p>
+        <p class="gold-text">طالب باحث | صفحة القانون ببساطة — المعرفة القانونية... بثقة واحترافية</p>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2>📜 تقديم شخصي</h2>
+            <p>
+                حاصل على الإجازة والماستر في العلوم القانونية، تخصص القانون الخاص، وأمتلك تجربة مهنية تمتد لأكثر
+                من 15 سنة في المجال القانوني، راكمت خلالها خبرة واسعة في التحليل القانوني والبحث الأكاديمي ودراسة
+                الإشكالات التشريعية والقضائية.
+            </p>
+            <p>
+                أمتلك القدرة على تحليل النصوص التشريعية والاجتهادات القضائية واستخلاص المبادئ والقواعد القانونية،
+                وأقدم مجموعة من الخدمات المتخصصة التي تجمع بين الخبرة المهنية والمنهجية الأكاديمية.
+            </p>
+            <p>
+                أهلاً بك في صفحتي الأكاديمية الرسمية، حيث أعمل على تقديم إسهامات وشروحات متخصصة في المجال القانوني،
+                ومشاركة الرؤى التحليلية المتعلقة بالنصوص التشريعية والمقررات القضائية وفق المنهجية الأكاديمية السليمة.
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>⚖️ المهارات والخبرات الأكاديمية</h2>
+            <ul class="skills-grid">
+                <li>شرح النصوص القانونية بدقة</li>
+                <li>شرح الطريقة الأكاديمية لإنجاز البحوث والعروض</li>
+                <li>التحليل والتعليق على النصوص والمقررات القضائية</li>
+                <li>شرح مناهج الإجابة على الأسئلة القانونية</li>
+                <li>إنجاز البحوث والمقالات والتحرير القانوني</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>📚 المقالات والإسهامات العلمية</h2>
+            <p>يمكنك تصفح المقالات والأبحاث القانونية مباشرة عبر النافذة أو تحميلها بصيغة PDF:</p>
+
+            <div class="articles-grid">
+                <article class="article-item">
+                    <div>
+                        <span class="tag">القانون المدني</span>
+                        <h3>عنوان المرجع الأول هنا</h3>
+                        <p>وصف مختصر لموضوع المرجع أو المقال والإشكالية القانونية التي يعالجها.</p>
+                    </div>
+                    <div class="actions">
+                        <button type="button" onclick="openPdf('عنوان المرجع الأول', 'articles/article1.pdf')" class="btn-sm btn-preview">👁️ قراءة في نافذة</button>
+                        <a href="articles/article1.pdf" download class="btn-sm btn-download">⬇️ تحميل PDF</a>
+                    </div>
+                </article>
+
+                <article class="article-item">
+                    <div>
+                        <span class="tag">المسطرة الجنائية</span>
+                        <h3>عنوان المقال الثاني هنا</h3>
+                        <p>وصف مختصر لموضوع المقال والإشكالية القانونية التي يعالجها.</p>
+                    </div>
+                    <div class="actions">
+                        <button type="button" onclick="openPdf('عنوان المقال الثاني', 'articles/article2.pdf')" class="btn-sm btn-preview">👁️ قراءة في نافذة</button>
+                        <a href="articles/article2.pdf" download class="btn-sm btn-download">⬇️ تحميل PDF</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="card contact-box">
+            <h2>📞 تواصل معي</h2>
+            <p>هل لديك استفسار قانوني أو رغبة في التعاون الأكاديمي؟ يسعدني تواصلك.</p>
+            <div class="btns">
+                <a href="mailto:example@email.com" class="btn btn-mail">✉️ أرسل رسالة بريدية</a>
+                <button type="button" onclick="showPhone()" id="telBtn" class="btn btn-tel">📱 اطلب رقم الهاتف</button>
+            </div>
+            <div id="telBox" class="phone-show">📞 0664489725</div>
+        </section>
+    </main>
+
+    <div id="pdfModal" class="modal" onclick="closeOutside(event)">
+        <div class="modal-content">
+            <div class="modal-top">
+                <h3 id="pdfTitle">معاينة الملف</h3>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <a id="pdfDownload" href="#" download class="btn-sm btn-download">⬇️ تحميل PDF</a>
+                    <button type="button" onclick="closePdf()" class="close-btn">✕</button>
+                </div>
+            </div>
+            <iframe id="pdfFrame" src=""></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © 2026 | الباحث عبد اللطيف | LEGALIS</p>
+    </footer>
+
+    <script>
+        function showPhone() {
+            document.getElementById("telBox").style.display = "block";
+            document.getElementById("telBtn").style.display = "none";
+        }
+
+        function openPdf(title, path) {
+            document.getElementById("pdfTitle").textContent = title;
+            document.getElementById("pdfFrame").src = path;
+            document.getElementById("pdfDownload").href = path;
+            document.getElementById("pdfModal").style.display = "flex";
+        }
+
+        function closePdf() {
+            document.getElementById("pdfModal").style.display = "none";
+            document.getElementById("pdfFrame").src = "";
+        }
+
+        function closeOutside(e) {
+            if (e.target.id === "pdfModal") closePdf();
+        }
+    </script>
+</body>
+</html>
