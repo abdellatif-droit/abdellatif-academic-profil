@@ -1,17 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إسهامات قانونية | الصفحة الأكاديمية - عبد اللطيف</title>
-    <!-- خط عربي عصري -->
+
+    <title>LEGALIS | الصفحة الأكاديمية - عبد اللطيف</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
             font-family: 'Cairo', sans-serif;
             background-color: #f8fafc;
@@ -19,7 +23,7 @@
             line-height: 1.8;
         }
 
-        /* شريط الترحيب العلوي الأكاديمي */
+        /* الرأس الرئيسي */
         header {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #1d4ed8 100%);
             color: white;
@@ -28,17 +32,19 @@
             border-bottom-left-radius: 35px;
             border-bottom-right-radius: 35px;
             box-shadow: 0 10px 30px rgba(30, 58, 138, 0.25);
-            position: relative;
         }
+
         .academic-badge {
             font-size: 3rem;
             margin-bottom: 10px;
         }
+
         header h1 {
             font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 10px;
         }
+
         header p {
             font-size: 1.1rem;
             color: #cbd5e1;
@@ -46,14 +52,45 @@
             margin: 0 auto;
         }
 
+        /* العلامة التجارية LEGALIS */
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 25px auto;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .brand-icon {
+            color: #c5a66b;
+            font-size: 38px;
+        }
+
+        .brand-name {
+            color: #b89552;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .brand-subtitle {
+            color: #64748b;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
         /* حاوية المحتوى */
         .container {
             max-width: 850px;
-            margin: -40px auto 40px;
+            margin: 0 auto 40px;
             padding: 0 20px;
         }
 
-        /* تصميم البطاقات */
+        /* البطاقات */
         .card {
             background: #ffffff;
             border-radius: 16px;
@@ -63,10 +100,12 @@
             border: 1px solid #e2e8f0;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .card:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
         }
+
         .card h2 {
             color: #1e3a8a;
             margin-bottom: 16px;
@@ -76,13 +115,19 @@
             gap: 10px;
         }
 
-        /* قائمة المهارات القانونية */
+        .card p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        /* المهارات القانونية */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 15px;
             list-style: none;
         }
+
         .skills-grid li {
             background: #f1f5f9;
             color: #1e293b;
@@ -93,17 +138,19 @@
             border-right: 4px solid #2563eb;
             transition: background 0.2s ease;
         }
+
         .skills-grid li:hover {
             background: #e2e8f0;
         }
 
-        /* قسم االمراجع اوالمقالات الأكاديمية */
+        /* المقالات والأبحاث */
         .articles-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin-top: 15px;
         }
+
         .article-item {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
@@ -114,10 +161,12 @@
             justify-content: space-between;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
+
         .article-item:hover {
             border-color: #2563eb;
             box-shadow: 0 6px 15px rgba(37, 99, 235, 0.08);
         }
+
         .article-tag {
             display: inline-block;
             background: #dbeafe;
@@ -127,24 +176,27 @@
             padding: 3px 12px;
             border-radius: 20px;
             margin-bottom: 10px;
-            width: fit-content;
         }
+
         .article-item h3 {
             font-size: 1.15rem;
             color: #0f172a;
             margin-bottom: 8px;
         }
+
         .article-item p {
             font-size: 0.9rem;
             color: #475569;
             margin-bottom: 18px;
         }
+
         .article-actions {
             display: flex;
             gap: 10px;
             border-top: 1px solid #e2e8f0;
             padding-top: 14px;
         }
+
         .btn-sm {
             flex: 1;
             padding: 9px 12px;
@@ -158,19 +210,22 @@
             font-family: 'Cairo', sans-serif;
             transition: opacity 0.2s ease;
         }
+
         .btn-sm:hover {
             opacity: 0.88;
         }
+
         .btn-preview {
             background-color: #e2e8f0;
             color: #1e293b;
         }
+
         .btn-download {
             background-color: #1d4ed8;
             color: #ffffff;
         }
 
-        /* النافذة المنبثقة (Modal) لمعاينة وتحميل المرجع او المقال */
+        /* نافذة معاينة PDF */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -181,6 +236,7 @@
             z-index: 1000;
             padding: 15px;
         }
+
         .modal-box {
             background: #ffffff;
             width: 100%;
@@ -192,6 +248,7 @@
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
+
         .modal-header {
             display: flex;
             align-items: center;
@@ -201,19 +258,21 @@
             border-bottom: 1px solid #cbd5e1;
             gap: 10px;
         }
+
         .modal-header h3 {
             font-size: 1.1rem;
             color: #1e3a8a;
-            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
         .modal-controls {
             display: flex;
             align-items: center;
             gap: 10px;
             flex-shrink: 0;
         }
+
         .btn-close {
             background: #ef4444;
             color: white;
@@ -224,24 +283,24 @@
             font-size: 1.2rem;
             font-weight: bold;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
+
         .modal-body {
             flex: 1;
             background: #e2e8f0;
         }
+
         .modal-body iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
 
-        /* قسم التواصل والأزرار */
+        /* التواصل */
         .contact-section {
             text-align: center;
         }
+
         .contact-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -249,6 +308,7 @@
             gap: 15px;
             margin-top: 20px;
         }
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -265,14 +325,20 @@
             font-family: 'Cairo', sans-serif;
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
+
         .btn:hover {
             opacity: 0.9;
             transform: translateY(-2px);
         }
-        .btn-email { background-color: #1e3a8a; }
-        .btn-phone { background-color: #059669; }
 
-        /* صندوق إظهار رقم الهاتف المخفي */
+        .btn-email {
+            background-color: #1e3a8a;
+        }
+
+        .btn-phone {
+            background-color: #059669;
+        }
+
         .phone-box {
             margin-top: 15px;
             font-size: 1.1rem;
@@ -281,64 +347,106 @@
             display: none;
         }
 
+        /* أسفل الصفحة */
         footer {
             text-align: center;
             padding: 20px;
             color: #64748b;
             font-size: 0.9rem;
         }
+
+        /* الهواتف */
+        @media (max-width: 600px) {
+            header {
+                padding: 40px 15px 60px;
+            }
+
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            .brand-name {
+                font-size: 26px;
+            }
+
+            .brand-subtitle {
+                width: 100%;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .article-actions {
+                flex-direction: column;
+            }
+
+            .modal-header {
+                padding: 10px;
+            }
+        }
     </style>
-    .brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.brand-icon {
-    color: #d6b778;
-    font-size: 32px;
-}
-
-.brand-name {
-    color: #d6b778;
-    font-size: 27px;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-.brand-subtitle {
-    color: #64748b;
-    font-size: 10px;
-}
 </head>
+
 <body>
 
+    <!-- الرأس الرئيسي -->
     <header>
         <div class="academic-badge">🎓⚖️</div>
-        <h1>مرحباً، أنا عبد اللطيف مسنشاركم القانوني </h1>
-        <p>طالب باحث<br>صفحة القانون ببساطة</p>
+
+        <h1>مرحباً، أنا عبد اللطيف، مستشاركم القانوني</h1>
+
+        <p>
+            طالب باحث<br>
+            صفحة القانون ببساطة
+        </p>
     </header>
+
+    <!-- العلامة التجارية -->
     <div class="brand">
-    <span class="brand-icon">⚖</span>
-    <span class="brand-name">LEGALIS</span>
-    <span class="brand-subtitle">
-        EXPERTISE JURIDIQUE & ACADÉMIQUE
-    </span>
-</div>
+        <span class="brand-icon">⚖</span>
+        <span class="brand-name">LEGALIS</span>
+        <span class="brand-subtitle">
+            EXPERTISE JURIDIQUE & ACADÉMIQUE
+        </span>
+    </div>
+
     <div class="container">
-        <!-- نبذة عني -->
+
+        <!-- تقديم شخصي -->
         <section class="card">
-            <h2>*📜* تقديم شخصي</h2>
-            <p>احاصل على الإجازة والماستر في العلوم القانونية، تخصص القانون الخاص، وأمتلك تجربة مهنية تمتد لأكثر من 15 سنة في المجال القانوني، راكمت خلالها خبرة واسعة في التحليل القانوني والبحث الأكاديمي ودراسة الإشكالات التشريعية والقضائية <p>
-                <p> لقدرة على تحليل النصوص التشريعية والاجتهادات القضائية واستخلاص المبادئ القانونية<p>
-                  <p> قدم مجموعة من الخدمات المتخصصة، تجمع بين الخبرة المهنية والمنهجية الأكاديمية، وتشمل<p>   
-                أهلاً بك في صفحتي الأكاديمية الرسمية. أعمل على تقديم إسهامات وشروحات متخصصة في المجال القانوني، ومشاركة الرؤى التحليلية المتعلقة بالنصوص التشريعية والمقررات القضائية وفق المنهجية الأكاديمية السليمة.
+            <h2>📜 تقديم شخصي</h2>
+
+            <p>
+                حاصل على الإجازة والماستر في العلوم القانونية،
+                تخصص القانون الخاص، وأمتلك تجربة مهنية تمتد لأكثر
+                من 15 سنة في المجال القانوني، راكمت خلالها خبرة
+                واسعة في التحليل القانوني والبحث الأكاديمي ودراسة
+                الإشكالات التشريعية والقضائية.
+            </p>
+
+            <p>
+                أمتلك القدرة على تحليل النصوص التشريعية والاجتهادات
+                القضائية واستخلاص المبادئ والقواعد القانونية.
+            </p>
+
+            <p>
+                أقدم مجموعة من الخدمات المتخصصة التي تجمع بين
+                الخبرة المهنية والمنهجية الأكاديمية.
+            </p>
+
+            <p>
+                أهلاً بك في صفحتي الأكاديمية الرسمية. أعمل على تقديم
+                إسهامات وشروحات متخصصة في المجال القانوني، ومشاركة
+                الرؤى التحليلية المتعلقة بالنصوص التشريعية والمقررات
+                القضائية وفق المنهجية الأكاديمية السليمة.
             </p>
         </section>
 
-        <!-- المهارات والخدمات القانونية -->
+        <!-- المهارات والخدمات -->
         <section class="card">
             <h2>⚖️ المهارات والخبرات الأكاديمية</h2>
+
             <ul class="skills-grid">
                 <li>شرح النصوص القانونية بدقة</li>
                 <li>شرح الطريقة الأكاديمية لإنجاز البحوث والعروض</li>
@@ -348,123 +456,195 @@
             </ul>
         </section>
 
-        <!-- قسم المراجع والإسهامات العلمية -->
+        <!-- المقالات والإسهامات -->
         <section class="card">
             <h2>📚 المقالات والإسهامات العلمية</h2>
-            <p>يمكنك تصفح المقالات والأبحاث القانونية مباشرة عبر النافذة أو تحميلها بصيغة PDF:</p>
-            
+
+            <p>
+                يمكنك تصفح المقالات والأبحاث القانونية مباشرة عبر
+                النافذة أو تحميلها بصيغة PDF:
+            </p>
+
             <div class="articles-grid">
-                
-                <!-- بطاقة المرجع 1 -->
+
+                <!-- المقال الأول -->
                 <article class="article-item">
                     <div>
                         <span class="article-tag">القانون المدني</span>
+
                         <h3>عنوان المرجع الأول هنا</h3>
-                        <p>وصف مختصر لموضوع المرجع او المقال والإشكالية القانونية التي يعالجها.</p>
+
+                        <p>
+                            وصف مختصر لموضوع المرجع أو المقال
+                            والإشكالية القانونية التي يعالجها.
+                        </p>
                     </div>
+
                     <div class="article-actions">
-                        <button onclick="openModal('عنوان المرجع او المقال الأول هنا', 'articles/article1.pdf')" class="btn-sm btn-preview">
+                        <button onclick="openModal('عنوان المرجع الأول', 'articles/article1.pdf')"
+                                class="btn-sm btn-preview">
                             👁️ قراءة في نافذة
                         </button>
-                        <a href="articles/article1.pdf" download class="btn-sm btn-download">
+
+                        <a href="articles/article1.pdf"
+                           download
+                           class="btn-sm btn-download">
                             ⬇️ تحميل PDF
                         </a>
                     </div>
                 </article>
 
-                <!-- بطاقة المرجع او المقال 2 -->
+                <!-- المقال الثاني -->
                 <article class="article-item">
                     <div>
                         <span class="article-tag">المسطرة الجنائية</span>
+
                         <h3>عنوان المقال الثاني هنا</h3>
-                        <p>وصف مختصر لموضوع المقال والإشكالية القانونية التي يعالجها.</p>
+
+                        <p>
+                            وصف مختصر لموضوع المقال والإشكالية
+                            القانونية التي يعالجها.
+                        </p>
                     </div>
+
                     <div class="article-actions">
-                        <button onclick="openModal('عنوان المرجع او المقال الثاني هنا', 'articles/article2.pdf')" class="btn-sm btn-preview">
+                        <button onclick="openModal('عنوان المقال الثاني', 'articles/article2.pdf')"
+                                class="btn-sm btn-preview">
                             👁️ قراءة في نافذة
                         </button>
-                        <a href="articles/article2.pdf" download class="btn-sm btn-download">
+
+                        <a href="articles/article2.pdf"
+                           download
+                           class="btn-sm btn-download">
                             ⬇️ تحميل PDF
                         </a>
                     </div>
                 </article>
-
-                <!-- لإضافة مقال ثالث، انسخ من <article class="article-item"> إلى </article> وألصقه هنا -->
 
             </div>
         </section>
 
-        <!-- قسم التواصل -->
+        <!-- التواصل -->
         <section class="card contact-section">
             <h2>📞 تواصل معي</h2>
-            <p>هل لديك استفسار قانوني أو رغبة في التعاون الأكاديمي؟ يسعدني تواصلك.</p>
-            
+
+            <p>
+                هل لديك استفسار قانوني أو رغبة في التعاون الأكاديمي؟
+                يسعدني تواصلك.
+            </p>
+
             <div class="contact-buttons">
-                <a href="mailto:example@email.com" class="btn btn-email">
+
+                <a href="mailto:example@email.com"
+                   class="btn btn-email">
                     ✉️ أرسل رسالة بريدية
                 </a>
-                <button onclick="revealPhone()" class="btn btn-phone" id="phoneBtn">
+
+                <button onclick="revealPhone()"
+                        class="btn btn-phone"
+                        id="phoneBtn">
                     📱 اطلب رقم الهاتف
                 </button>
+
             </div>
 
             <div id="phoneDisplay" class="phone-box">
                 📞 0664489725
             </div>
         </section>
+
     </div>
 
-    <!-- النافذة المنبثقة لعرض وتحميل المقال -->
-    <div id="articleModal" class="modal-overlay" onclick="closeModalOnOutside(event)">
+    <!-- نافذة معاينة المقال -->
+    <div id="articleModal"
+         class="modal-overlay"
+         onclick="closeModalOnOutside(event)">
+
         <div class="modal-box">
+
             <div class="modal-header">
-                <h3 id="modalTitle">عنوان المرجع او المقال</h3>
+
+                <h3 id="modalTitle">عنوان المرجع أو المقال</h3>
+
                 <div class="modal-controls">
-                    <a id="modalDownloadLink" href="#" download class="btn-sm btn-download" style="padding: 6px 14px;">
+
+                    <a id="modalDownloadLink"
+                       href="#"
+                       download
+                       class="btn-sm btn-download"
+                       style="padding: 6px 14px;">
                         ⬇️ تحميل PDF
                     </a>
-                    <button onclick="closeModal()" class="btn-close" title="إغلاق">✕</button>
+
+                    <button onclick="closeModal()"
+                            class="btn-close"
+                            title="إغلاق">
+                        ✕
+                    </button>
+
                 </div>
             </div>
+
             <div class="modal-body">
                 <iframe id="modalIframe" src=""></iframe>
             </div>
+
         </div>
     </div>
 
+    <!-- تذييل الصفحة -->
     <footer>
-        <p>جميع الحقوق محفوظة © 2026 | الباحث عبد اللطيف</p>
+        <p>جميع الحقوق محفوظة © 2026 | الباحث عبد اللطيف | LEGALIS</p>
     </footer>
 
     <script>
-        // دالة إظهار رقم الهاتف
+
+        // إظهار رقم الهاتف
         function revealPhone() {
             var phoneDiv = document.getElementById("phoneDisplay");
             var btn = document.getElementById("phoneBtn");
+
             phoneDiv.style.display = "block";
             btn.style.display = "none";
         }
 
-        // دالة فتح نافذة المرجع او المقال
+        // فتح نافذة المقال
         function openModal(title, pdfPath) {
+
             document.getElementById("modalTitle").textContent = title;
+
             document.getElementById("modalIframe").src = pdfPath;
+
             document.getElementById("modalDownloadLink").href = pdfPath;
+
             document.getElementById("articleModal").style.display = "flex";
         }
 
-        // دالة إغلاق نافذة المرجع او المقال
+        // إغلاق النافذة
         function closeModal() {
+
             document.getElementById("articleModal").style.display = "none";
+
             document.getElementById("modalIframe").src = "";
         }
 
         // إغلاق النافذة عند الضغط خارجها
         function closeModalOnOutside(event) {
+
             if (event.target.id === "articleModal") {
                 closeModal();
             }
         }
+
+        // إغلاق النافذة باستعمال زر Escape
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "Escape") {
+                closeModal();
+            }
+
+        });
+
     </script>
 
 </body>
