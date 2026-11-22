@@ -12,6 +12,10 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Cairo', sans-serif;
             background-color: #f1f5f9;
@@ -81,7 +85,7 @@
         }
 
         .container {
-            max-width: 920px;
+            max-width: 960px;
             margin: -30px auto 40px;
             padding: 0 18px;
         }
@@ -180,9 +184,34 @@
             background: #f8fafc;
         }
 
+        .quick-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .nav-chip {
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: #f1f5f9;
+            color: #162447;
+            text-decoration: none;
+            font-size: 0.84rem;
+            font-weight: 700;
+            border: 1px solid #cbd5e1;
+            transition: all 0.2s ease;
+        }
+
+        .nav-chip:hover {
+            background: #162447;
+            color: #ffffff;
+            border-color: #162447;
+        }
+
         .upload-form {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
             gap: 12px;
             align-items: end;
             background: #f8fafc;
@@ -212,16 +241,29 @@
         }
 
         .library-section {
-            margin-top: 22px;
-            padding-top: 18px;
-            border-top: 1px solid #e2e8f0;
+            margin-top: 24px;
+            padding: 18px;
+            border-radius: 14px;
+            background: #fcfcfd;
+            border: 1px solid #e2e8f0;
             scroll-margin-top: 20px;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .library-section.highlight-section {
+            border-color: #c5a66b;
+            box-shadow: 0 0 0 3px rgba(197, 166, 107, 0.25);
         }
 
         .library-section h3 {
             color: #162447;
-            font-size: 1.12rem;
+            font-size: 1.1rem;
             margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .articles-grid {
@@ -232,7 +274,7 @@
         }
 
         .article-item {
-            background: #f8fafc;
+            background: #ffffff;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
             padding: 18px;
@@ -479,10 +521,10 @@
 
         <section class="card">
             <h2>📚 المكتبة القانونية — المراجع والمقالات والإسهامات العلمية</h2>
-            <p>ابحث في المراجع أو أنزل ملفًا وحدد مجاله ليُحوَّل مباشرة إلى القسم المناسب في قائمة القراءة والتحميل:</p>
+            <p>ابحث في المراجع أو أضف ملفاً واختر تخصصه ليُوجّه مباشرة إلى قسمه المستقل في المكتبة:</p>
 
             <div class="notice-banner">
-                ملاحظة: الملفات المضافة هنا تُحفظ محلياً في متصفحك الحالي (بحد أقصى 10MB لكل ملف PDF/DOCX/TXT). لظهور الملفات لجميع الزوار على الإنترنت، يلزم ربطها بخادم (Backend) أو تخزين سحابي.
+                ملاحظة: الملفات المضافة عبر النموذج تُحفظ محلياً في متصفحك الحالي (بحد أقصى 10MB لكل ملف PDF/DOCX/TXT). لإتاحتها لجميع الزوار دائماً، ارفعها إلى مجلد <code>articles</code> أو اربطها بخادم.
             </div>
 
             <div id="statusMsg" class="status-msg" role="alert"></div>
@@ -492,6 +534,14 @@
                 <input type="search" id="librarySearch" oninput="filterLibrary()" placeholder="ابحث بعنوان المرجع، اسم الملف، أو موضوعه...">
             </div>
 
+            <nav class="quick-nav" aria-label="تنقل سريع بين الأقسام القانونية">
+                <a href="#sectionFamily" class="nav-chip">👨‍👩‍👧‍👦 القانون الأسري</a>
+                <a href="#sectionCivil" class="nav-chip">🏛️ القانون المدني</a>
+                <a href="#sectionCommercial" class="nav-chip">💼 القانون التجاري</a>
+                <a href="#sectionRealEstate" class="nav-chip">🏢 القانون العقاري</a>
+                <a href="#sectionCriminal" class="nav-chip">⚖️ القانون الجنائي</a>
+            </nav>
+
             <form class="upload-form" onsubmit="addFileToLibrary(event)">
                 <div class="field">
                     <label for="docFile">📤 تنزيل ملف (PDF / DOCX / TXT)</label>
@@ -500,14 +550,17 @@
 
                 <div class="field">
                     <label for="docTitle">📝 عنوان المرجع أو المقال</label>
-                    <input type="text" id="docTitle" maxlength="140" placeholder="مثال: أحكام العقود التجارية">
+                    <input type="text" id="docTitle" maxlength="140" placeholder="مثال: أحكام الكراء التجاري">
                 </div>
 
                 <div class="field">
                     <label for="docCategory">⚖️ التخصص القانوني</label>
                     <select id="docCategory" required>
-                        <option value="civil_family_commercial">الأسري والمدني والتجاري</option>
-                        <option value="criminal">الشق الجنائي</option>
+                        <option value="family">القانون الأسري</option>
+                        <option value="civil">القانون المدني</option>
+                        <option value="commercial">القانون التجاري</option>
+                        <option value="real_estate">القانون العقاري</option>
+                        <option value="criminal">القانون الجنائي</option>
                     </select>
                 </div>
 
@@ -516,12 +569,34 @@
                 </div>
             </form>
 
-            <div id="sectionCivilFamilyCommercial" class="library-section">
-                <h3>🏛️ قائمة القراءة والتحميل — المجال الأسري والمدني والتجاري</h3>
-                <div id="civilFamilyCommercialGrid" class="articles-grid">
+            <!-- 1. القسم الأسري -->
+            <div id="sectionFamily" class="library-section">
+                <h3>👨‍👩‍👧‍👦 قائمة القراءة والتحميل — القانون الأسري</h3>
+                <div id="familyGrid" class="articles-grid"></div>
+                <p id="familyEmptySearch" class="empty-msg">لا توجد مراجع أو نتائج مطابقة في قسم القانون الأسري حالياً.</p>
+            </div>
+
+            <!-- 2. القسم المدني -->
+            <div id="sectionCivil" class="library-section">
+                <h3>🏛️ قائمة القراءة والتحميل — القانون المدني</h3>
+                <div id="civilGrid" class="articles-grid"></div>
+                <p id="civilEmptySearch" class="empty-msg">لا توجد مراجع أو نتائج مطابقة في قسم القانون المدني حالياً.</p>
+            </div>
+
+            <!-- 3. القسم التجاري -->
+            <div id="sectionCommercial" class="library-section">
+                <h3>💼 قائمة القراءة والتحميل — القانون التجاري</h3>
+                <div id="commercialGrid" class="articles-grid"></div>
+                <p id="commercialEmptySearch" class="empty-msg">لا توجد مراجع أو نتائج مطابقة في قسم القانون التجاري حالياً.</p>
+            </div>
+
+            <!-- 4. القسم العقاري -->
+            <div id="sectionRealEstate" class="library-section">
+                <h3>🏢 قائمة القراءة والتحميل — القانون العقاري</h3>
+                <div id="realEstateGrid" class="articles-grid">
                     <article class="article-item">
                         <div>
-                            <span class="tag">القانون العقاري - حماية المستهلك</span>
+                            <span class="tag">القانون العقاري</span>
                             <h4>الوعد الانفرادي بالبيع في المجال العقاري</h4>
                             <p>دراسة للدكتور وائل تيسة منشورة في المجلة الإلكترونية للأبحاث القانونية (2024، العدد 14) حول الإطار القانوني للوعد الانفرادي بالبيع وشروطه وآثاره في حماية المستهلك العقاري[cite: 16].</p>
                         </div>
@@ -530,38 +605,15 @@
                             <a href="articles/promesse.pdf" download="promesse.pdf" class="btn-sm btn-download">⬇️ تحميل PDF</a>
                         </div>
                     </article>
-
-                    <article class="article-item">
-                        <div>
-                            <span class="tag">القانون العقاري - الأسري - المدني - التجاري</span>
-                            <h4>عنوان المرجع الأول</h4>
-                            <p>وصف مختصر لموضوع المرجع أو المقال والإشكالية القانونية التي يعالجها.</p>
-                        </div>
-                        <div class="actions">
-                            <button type="button" onclick="openPdf('عنوان المرجع الأول', 'articles/article1.pdf')" class="btn-sm btn-preview">👁️ قراءة في نافذة</button>
-                            <a href="articles/article1.pdf" download class="btn-sm btn-download">⬇️ تحميل PDF</a>
-                        </div>
-                    </article>
                 </div>
-                <p id="civilEmptySearch" class="empty-msg">لا توجد نتائج مطابقة في المجال الأسري والمدني والتجاري.</p>
+                <p id="realEstateEmptySearch" class="empty-msg">لا توجد مراجع أو نتائج مطابقة في قسم القانون العقاري حالياً.</p>
             </div>
 
+            <!-- 5. القسم الجنائي -->
             <div id="sectionCriminal" class="library-section">
-                <h3>⚖️ قائمة القراءة والتحميل — الشق الجنائي</h3>
-                <div id="criminalGrid" class="articles-grid">
-                    <article class="article-item">
-                        <div>
-                            <span class="tag">القانون الجنائي</span>
-                            <h4>عنوان المرجع الثاني</h4>
-                            <p>وصف مختصر لموضوع المقال والإشكالية القانونية التي يعالجها.</p>
-                        </div>
-                        <div class="actions">
-                            <button type="button" onclick="openPdf('عنوان المرجع الثاني', 'articles/article2.pdf')" class="btn-sm btn-preview">👁️ قراءة في نافذة</button>
-                            <a href="articles/article2.pdf" download class="btn-sm btn-download">⬇️ تحميل PDF</a>
-                        </div>
-                    </article>
-                </div>
-                <p id="criminalEmptySearch" class="empty-msg">لا توجد نتائج مطابقة في الشق الجنائي.</p>
+                <h3>⚖️ قائمة القراءة والتحميل — القانون الجنائي</h3>
+                <div id="criminalGrid" class="articles-grid"></div>
+                <p id="criminalEmptySearch" class="empty-msg">لا توجد مراجع أو نتائج مطابقة في قسم القانون الجنائي حالياً.</p>
             </div>
         </section>
 
@@ -605,12 +657,63 @@
         const DB_NAME = "LegalisLibraryDB";
         const STORE_NAME = "documents";
 
+        const CATEGORIES = {
+            family: {
+                tag: "القانون الأسري",
+                gridId: "familyGrid",
+                emptyId: "familyEmptySearch",
+                sectionId: "sectionFamily",
+                label: "القانون الأسري"
+            },
+            civil: {
+                tag: "القانون المدني",
+                gridId: "civilGrid",
+                emptyId: "civilEmptySearch",
+                sectionId: "sectionCivil",
+                label: "القانون المدني"
+            },
+            commercial: {
+                tag: "القانون التجاري",
+                gridId: "commercialGrid",
+                emptyId: "commercialEmptySearch",
+                sectionId: "sectionCommercial",
+                label: "القانون التجاري"
+            },
+            real_estate: {
+                tag: "القانون العقاري",
+                gridId: "realEstateGrid",
+                emptyId: "realEstateEmptySearch",
+                sectionId: "sectionRealEstate",
+                label: "القانون العقاري"
+            },
+            criminal: {
+                tag: "القانون الجنائي",
+                gridId: "criminalGrid",
+                emptyId: "criminalEmptySearch",
+                sectionId: "sectionCriminal",
+                label: "القانون الجنائي"
+            }
+        };
+
         const libraryItems = {
-            civil_family_commercial: [],
+            family: [],
+            civil: [],
+            commercial: [],
+            real_estate: [],
             criminal: []
         };
 
         let dbInstance = null;
+
+        function normalizeCategory(rawCategory) {
+            if (Object.prototype.hasOwnProperty.call(CATEGORIES, rawCategory)) {
+                return rawCategory;
+            }
+            if (rawCategory === "civil_family_commercial") {
+                return "civil";
+            }
+            return "family";
+        }
 
         function showStatus(message, type = "error") {
             const box = document.getElementById("statusMsg");
@@ -669,235 +772,4 @@
             if (!dbInstance) return;
             return new Promise((resolve, reject) => {
                 const tx = dbInstance.transaction(STORE_NAME, "readwrite");
-                tx.objectStore(STORE_NAME).delete(id);
-                tx.oncomplete = () => resolve();
-                tx.onerror = () => reject(tx.error);
-            });
-        }
-
-        async function loadSavedItems() {
-            try {
-                dbInstance = await openDB();
-                const records = await new Promise((resolve, reject) => {
-                    const tx = dbInstance.transaction(STORE_NAME, "readonly");
-                    const req = tx.objectStore(STORE_NAME).getAll();
-                    req.onsuccess = () => resolve(req.result || []);
-                    req.onerror = () => reject(req.error);
-                });
-
-                records.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-
-                for (const rec of records) {
-                    if (!rec || !(rec.blob instanceof Blob)) continue;
-                    const category = rec.category === "criminal" ? "criminal" : "civil_family_commercial";
-                    const fileUrl = URL.createObjectURL(rec.blob);
-                    libraryItems[category].push({
-                        id: rec.id,
-                        title: rec.title,
-                        fileName: rec.fileName,
-                        fileUrl,
-                        category
-                    });
-                }
-
-                renderCategory("civil_family_commercial");
-                renderCategory("criminal");
-                filterLibrary();
-            } catch (err) {
-                showStatus("تعذر فتح قاعدة التخزين المحلية، ستعمل الإضافة خلال الجلسة الحالية فقط.");
-            }
-        }
-
-        function validateFile(file) {
-            const lowerName = file.name.toLowerCase();
-            const hasValidExt = ALLOWED_EXTENSIONS.some(ext => lowerName.endsWith(ext));
-            const hasValidMime = !file.type || ALLOWED_MIME_TYPES.has(file.type);
-
-            if (!hasValidExt || !hasValidMime) {
-                return "نوع الملف غير مسموح. يُسمح فقط بملفات PDF أو DOCX أو TXT.";
-            }
-            if (file.size === 0 || file.size > MAX_FILE_SIZE) {
-                return "حجم الملف يجب أن يكون أكبر من 0 وأقل من 10 ميغابايت.";
-            }
-            return null;
-        }
-
-        async function addFileToLibrary(event) {
-            event.preventDefault();
-            clearStatus();
-
-            const fileInput = document.getElementById("docFile");
-            const titleInput = document.getElementById("docTitle");
-            const categorySelect = document.getElementById("docCategory");
-
-            const file = fileInput.files[0];
-            if (!file) return;
-
-            const validationError = validateFile(file);
-            if (validationError) {
-                showStatus(validationError, "error");
-                return;
-            }
-
-            const category = categorySelect.value === "criminal" ? "criminal" : "civil_family_commercial";
-            const safeName = sanitizeFileName(file.name);
-            const fallbackTitle = safeName.replace(/\.[^/.]+$/, "");
-            const title = (titleInput.value.trim() || fallbackTitle).slice(0, 140);
-            const fileUrl = URL.createObjectURL(file);
-            const id = Date.now() + "_" + Math.random().toString(36).slice(2, 8);
-
-            const item = {
-                id,
-                title,
-                fileName: safeName,
-                fileUrl,
-                category
-            };
-
-            try {
-                await saveItemToDB({
-                    id,
-                    title,
-                    fileName: safeName,
-                    blob: file,
-                    category,
-                    createdAt: Date.now()
-                });
-                showStatus("تم حفظ الملف في التخزين المحلي للمتصفح وإضافته للقسم.", "success");
-            } catch (err) {
-                showStatus("تمت إضافته للجلسة الحالية، لكن تعذر حفظه بشكل دائم.", "error");
-            }
-
-            libraryItems[category].unshift(item);
-            renderCategory(category);
-            filterLibrary();
-
-            fileInput.value = "";
-            titleInput.value = "";
-
-            const targetSectionId = category === "criminal" ? "sectionCriminal" : "sectionCivilFamilyCommercial";
-            const targetSection = document.getElementById(targetSectionId);
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-        }
-
-        function renderCategory(category) {
-            const isCriminal = category === "criminal";
-            const grid = document.getElementById(isCriminal ? "criminalGrid" : "civilFamilyCommercialGrid");
-            const tagLabel = isCriminal ? "القانون الجنائي" : "الأسري - المدني - التجاري";
-
-            grid.querySelectorAll(".dynamic-item").forEach(el => el.remove());
-
-            libraryItems[category].forEach(item => {
-                const article = document.createElement("article");
-                article.className = "article-item dynamic-item";
-
-                const tagSpan = document.createElement("span");
-                tagSpan.className = "tag";
-                tagSpan.textContent = tagLabel;
-
-                const h4 = document.createElement("h4");
-                h4.textContent = item.title;
-
-                const p = document.createElement("p");
-                p.textContent = "ملف مضاف للقراءة والتحميل: " + item.fileName;
-
-                const topDiv = document.createElement("div");
-                topDiv.append(tagSpan, h4, p);
-
-                const actionsDiv = document.createElement("div");
-                actionsDiv.className = "actions";
-
-                const previewBtn = document.createElement("button");
-                previewBtn.type = "button";
-                previewBtn.className = "btn-sm btn-preview";
-                previewBtn.textContent = "👁️ قراءة في نافذة";
-                previewBtn.addEventListener("click", () => openPdf(item.title, item.fileUrl));
-
-                const downloadLink = document.createElement("a");
-                downloadLink.href = isSafeUrl(item.fileUrl) ? item.fileUrl : "#";
-                downloadLink.download = item.fileName;
-                downloadLink.rel = "noopener noreferrer";
-                downloadLink.className = "btn-sm btn-download";
-                downloadLink.textContent = "⬇️ تحميل";
-
-                const deleteBtn = document.createElement("button");
-                deleteBtn.type = "button";
-                deleteBtn.className = "btn-sm btn-delete";
-                deleteBtn.textContent = "🗑️";
-                deleteBtn.title = "حذف الملف";
-                deleteBtn.addEventListener("click", () => removeItem(category, item.id));
-
-                actionsDiv.append(previewBtn, downloadLink, deleteBtn);
-                article.append(topDiv, actionsDiv);
-
-                grid.prepend(article);
-            });
-        }
-
-        async function removeItem(category, id) {
-            const index = libraryItems[category].findIndex(item => item.id === id);
-            if (index === -1) return;
-
-            URL.revokeObjectURL(libraryItems[category][index].fileUrl);
-            libraryItems[category].splice(index, 1);
-            await deleteItemFromDB(id).catch(() => {});
-            renderCategory(category);
-            filterLibrary();
-        }
-
-        function filterLibrary() {
-            const query = document.getElementById("librarySearch").value.trim().toLowerCase();
-            filterGrid("civilFamilyCommercialGrid", "civilEmptySearch", query);
-            filterGrid("criminalGrid", "criminalEmptySearch", query);
-        }
-
-        function filterGrid(gridId, emptyMsgId, query) {
-            const grid = document.getElementById(gridId);
-            const emptyMsg = document.getElementById(emptyMsgId);
-            const items = grid.querySelectorAll(".article-item");
-            let visibleCount = 0;
-
-            items.forEach(item => {
-                const text = item.textContent.toLowerCase();
-                const matches = !query || text.includes(query);
-                item.style.display = matches ? "" : "none";
-                if (matches) visibleCount++;
-            });
-
-            emptyMsg.style.display = visibleCount === 0 ? "block" : "none";
-        }
-
-        function showPhone() {
-            document.getElementById("telBox").style.display = "block";
-            document.getElementById("telBtn").style.display = "none";
-        }
-
-        function openPdf(title, path) {
-            if (!isSafeUrl(path)) {
-                showStatus("رابط الملف غير آمن أو غير صالح للمعاينة.", "error");
-                return;
-            }
-            document.getElementById("pdfTitle").textContent = String(title || "معاينة الملف").slice(0, 140);
-            document.getElementById("pdfFrame").src = path;
-            document.getElementById("pdfDownload").href = path;
-            document.getElementById("pdfModal").style.display = "flex";
-        }
-
-        function closePdf() {
-            document.getElementById("pdfModal").style.display = "none";
-            document.getElementById("pdfFrame").src = "";
-        }
-
-        function closeOutside(e) {
-            if (e.target.id === "pdfModal") closePdf();
-        }
-
-        document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape") {
-                closePdf();
-            }
-        });
-
-        window.addEventListener("DOMContentLoaded", loadSaved
+                tx.objectStore(STORE_NAME
