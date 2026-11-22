@@ -432,7 +432,7 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(15, 23, 42, 0.78);
             align-items: center;
             justify-content: center;
             z-index: 9999;
@@ -475,6 +475,7 @@
             width: 100%;
             height: 100%;
             border: none;
+            background: #ffffff;
         }
 
         footer {
@@ -560,7 +561,7 @@
             <form id="uploadForm" class="upload-form" onsubmit="addFileToLibrary(event)">
                 <div class="field">
                     <label for="docFile">📤 تنزيل ملف (PDF / DOCX / TXT)</label>
-                    <input type="file" id="docFile" accept=".pdf,.docx,.txt" required>
+                    <input type="file" id="docFile" accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain" required>
                 </div>
 
                 <div class="field">
@@ -655,7 +656,7 @@
                     <button type="button" onclick="closePdf()" class="close-btn" aria-label="إغلاق النافذة">✕</button>
                 </div>
             </div>
-            <iframe id="pdfFrame" src="" title="معاينة الملف" sandbox="allow-scripts allow-same-origin"></iframe>
+            <iframe id="pdfFrame" src="" title="معاينة الملف"></iframe>
         </div>
     </div>
 
@@ -676,18 +677,13 @@
             {
                 category: "real_estate",
                 title: "الوعد الانفرادي بالبيع في المجال العقاري",
-                description: "دراسة للدكتور وائل تيسة منشورة في المجلة الإلكترونية للأبحاث القانونية (2024، العدد 14) حول الإطار القانوني للوعد الانفرادي بالبيع وشروطه وآثاره في حماية المستهلك العقاري[cite: 16].",
+                description: "دراسة للدكتور وائل تيسة منشورة في المجلة الإلكترونية للأبحاث القانونية (2024، العدد 14) حول الإطار القانوني للوعد الانفرادي بالبيع وشروطه وآثاره في حماية المستهلك العقاري.",
                 path: "articles/promesse.pdf"
             }
         ];
 
-        const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+        const MAX_FILE_SIZE = 15 * 1024 * 1024; // 15 MB
         const ALLOWED_EXTENSIONS = [".pdf", ".docx", ".txt"];
-        const ALLOWED_MIME_TYPES = new Set([
-            "application/pdf",
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            "text/plain"
-        ]);
 
         const DB_NAME = "LegalisLibraryDB";
         const STORE_NAME = "documents";
@@ -769,14 +765,14 @@
         }
 
         function sanitizeFileName(name) {
-            return name.replace(/[^a-zA-Z0-9\u0600-\u06FF._-]/g, "_").slice(0, 120);
+            return String(name || "document.pdf").replace(/[^a-zA-Z0-9\u0600-\u06FF._-]/g, "_").slice(0, 120);
         }
 
         function isSafeUrl(url) {
             if (typeof url !== "string") return false;
             const trimmed = url.trim();
             if (trimmed.startsWith("blob:")) return true;
-            if (/^(articles|uploads)\/[a-zA-Z0-9._-]+\.pdf$/i.test(trimmed)) return true;
+            if (/^(articles|uploads)\/[a-zA-Z0-9._-]+\.(pdf|docx|txt)$/i.test(trimmed)) return true;
             return false;
         }
 
@@ -868,26 +864,23 @@
                         isStatic: false
                     });
                 }
-
-                Object.keys(CATEGORIES).forEach(renderCategory);
-                filterLibrary();
             } catch (err) {
-                Object.keys(CATEGORIES).forEach(renderCategory);
-                filterLibrary();
                 showStatus("تم تحميل ملفات المجلد بنجاح؛ وستعمل الإضافة الفورية خلال الجلسة الحالية.", "error");
             }
+
+            Object.keys(CATEGORIES).forEach(renderCategory);
+            filterLibrary();
         }
 
         function validateFile(file) {
-            const lowerName = file.name.toLowerCase();
+            const lowerName = (file.name || "").toLowerCase();
             const hasValidExt = ALLOWED_EXTENSIONS.some(ext => lowerName.endsWith(ext));
-            const hasValidMime = !file.type || ALLOWED_MIME_TYPES.has(file.type);
 
-            if (!hasValidExt || !hasValidMime) {
+            if (!hasValidExt) {
                 return "نوع الملف غير مسموح. يُسمح فقط بملفات PDF أو DOCX أو TXT.";
             }
             if (file.size === 0 || file.size > MAX_FILE_SIZE) {
-                return "حجم الملف يجب أن يكون أكبر من 0 وأقل من 10 ميغابايت.";
+                return "حجم الملف يجب أن يكون أكبر من 0 وأقل من 15 ميغابايت.";
             }
             return null;
         }
@@ -912,8 +905,9 @@
             const fileInput = document.getElementById("docFile");
             const titleInput = document.getElementById("docTitle");
             const categorySelect = document.getElementById("docCategory");
+            const searchInput = document.getElementById("librarySearch");
 
-            const file = fileInput.files[0];
+            const file = fileInput.files && fileInput.files[0];
             if (!file) {
                 showStatus("يرجى اختيار ملف أولاً.", "error");
                 return;
@@ -923,6 +917,10 @@
             if (validationError) {
                 showStatus(validationError, "error");
                 return;
+            }
+
+            if (searchInput && searchInput.value) {
+                searchInput.value = "";
             }
 
             const category = normalizeCategory(categorySelect.value);
@@ -942,6 +940,10 @@
                 isStatic: false
             };
 
+            libraryItems[category].unshift(item);
+            renderCategory(category);
+            filterLibrary();
+
             try {
                 await saveItemToDB({
                     id,
@@ -953,12 +955,8 @@
                 });
                 showStatus(`تمت إضافة الملف إلى قسم "${CATEGORIES[category].label}" بنجاح.`, "success");
             } catch (err) {
-                showStatus(`تمت إضافة الملف إلى قسم "${CATEGORIES[category].label}" للجلسة الحالية.`, "error");
+                showStatus(`تمت إضافة الملف إلى قسم "${CATEGORIES[category].label}" (ضمن الجلسة الحالية).`, "success");
             }
-
-            libraryItems[category].unshift(item);
-            renderCategory(category);
-            filterLibrary();
 
             fileInput.value = "";
             titleInput.value = "";
@@ -1007,4 +1005,148 @@
 
                 const previewBtn = document.createElement("button");
                 previewBtn.type = "button";
-                previewBtn.className = "btn
+                previewBtn.className = "btn-sm btn-preview";
+                previewBtn.textContent = "👁️ قراءة في نافذة";
+                previewBtn.addEventListener("click", () => openPdf(item.title, item.fileUrl, item.fileName));
+
+                const downloadLink = document.createElement("a");
+                downloadLink.href = isSafeUrl(item.fileUrl) ? item.fileUrl : "#";
+                downloadLink.download = item.fileName;
+                downloadLink.rel = "noopener noreferrer";
+                downloadLink.className = "btn-sm btn-download";
+                downloadLink.textContent = "⬇️ تحميل";
+
+                actionsDiv.append(previewBtn, downloadLink);
+
+                if (!item.isStatic) {
+                    const deleteBtn = document.createElement("button");
+                    deleteBtn.type = "button";
+                    deleteBtn.className = "btn-sm btn-delete";
+                    deleteBtn.textContent = "🗑️";
+                    deleteBtn.title = "حذف الملف";
+                    deleteBtn.addEventListener("click", () => removeItem(category, item.id));
+                    actionsDiv.append(deleteBtn);
+                }
+
+                article.append(topDiv, actionsDiv);
+                grid.append(article);
+            });
+        }
+
+        async function removeItem(category, id) {
+            const index = libraryItems[category].findIndex(item => item.id === id);
+            if (index === -1) return;
+
+            const target = libraryItems[category][index];
+            if (!target.isStatic && target.fileUrl.startsWith("blob:")) {
+                URL.revokeObjectURL(target.fileUrl);
+            }
+            libraryItems[category].splice(index, 1);
+            await deleteItemFromDB(id).catch(() => {});
+            renderCategory(category);
+            filterLibrary();
+        }
+
+        function filterLibrary() {
+            const query = document.getElementById("librarySearch").value.trim().toLowerCase();
+            Object.values(CATEGORIES).forEach(cat => {
+                filterGrid(cat.gridId, cat.emptyId, query);
+            });
+        }
+
+        function filterGrid(gridId, emptyMsgId, query) {
+            const grid = document.getElementById(gridId);
+            const emptyMsg = document.getElementById(emptyMsgId);
+            const items = grid.querySelectorAll(".article-item");
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const matches = !query || text.includes(query);
+                item.style.display = matches ? "" : "none";
+                if (matches) visibleCount++;
+            });
+
+            emptyMsg.style.display = visibleCount === 0 ? "block" : "none";
+        }
+
+        function setupDragAndDrop() {
+            const form = document.getElementById("uploadForm");
+            const fileInput = document.getElementById("docFile");
+            if (!form || !fileInput) return;
+
+            ["dragenter", "dragover"].forEach(eventName => {
+                form.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    form.classList.add("drag-over");
+                });
+            });
+
+            ["dragleave", "drop"].forEach(eventName => {
+                form.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    form.classList.remove("drag-over");
+                });
+            });
+
+            form.addEventListener("drop", (e) => {
+                const files = e.dataTransfer && e.dataTransfer.files;
+                if (!files || !files.length) return;
+                const dt = new DataTransfer();
+                dt.items.add(files[0]);
+                fileInput.files = dt.files;
+                const titleInput = document.getElementById("docTitle");
+                if (titleInput && !titleInput.value.trim()) {
+                    titleInput.value = files[0].name.replace(/\.[^/.]+$/, "").slice(0, 140);
+                }
+            });
+        }
+
+        function showPhone() {
+            document.getElementById("telBox").style.display = "block";
+            document.getElementById("telBtn").style.display = "none";
+        }
+
+        function openPdf(title, path, fileName = "document.pdf") {
+            if (!isSafeUrl(path)) {
+                showStatus("رابط الملف غير آمن أو غير صالح للمعاينة.", "error");
+                return;
+            }
+            const dl = document.getElementById("pdfDownload");
+            document.getElementById("pdfTitle").textContent = String(title || "معاينة الملف").slice(0, 140);
+            document.getElementById("pdfFrame").src = path;
+            dl.href = path;
+            dl.download = fileName;
+            document.getElementById("pdfModal").style.display = "flex";
+        }
+
+        function closePdf() {
+            document.getElementById("pdfModal").style.display = "none";
+            document.getElementById("pdfFrame").src = "";
+        }
+
+        function closeOutside(e) {
+            if (e.target.id === "pdfModal") closePdf();
+        }
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") {
+                closePdf();
+            }
+        });
+
+        document.querySelectorAll(".nav-chip").forEach(chip => {
+            chip.addEventListener("click", () => {
+                const targetId = chip.getAttribute("href").replace("#", "");
+                setTimeout(() => highlightSection(targetId), 120);
+            });
+        });
+
+        window.addEventListener("DOMContentLoaded", () => {
+            closePdf();
+            setupDragAndDrop();
+            loadSavedItems();
+        });
+    </script>
+</body>
+</html>
